@@ -1,0 +1,54 @@
+.cart{
+    background-color: #101426;
+    color: yellow;
+}
+
+.cart ul{
+    max-height: 28rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+
+}
+.cart h2{
+    font-size: 1.7rem;
+    margin-left: 1rem;
+}
+.seperator{
+    border-bottom: 1px solid yellow;
+    
+}
+.total{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin: 1rem 0;
+    border-top: 1px solid yellow;
+    padding: 1rem;
+}
+.amount{
+    margin-left: 1rem;
+}
+.actions{
+    text-align: right;
+}
+
+.actions button{
+    font:inherit;
+    cursor: pointer;
+    background-color: transparent;
+    border: 1px solid yellow;
+    padding: 0.5rem 2rem;
+    margin-left: 1rem;
+    color: yellow;
+}
+
+.actions button:hover{
+    background-color: yellow;
+    color:#101426;
+    border-color: yellow;
+}
+

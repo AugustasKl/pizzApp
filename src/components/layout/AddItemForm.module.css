@@ -1,0 +1,29 @@
+.form{
+    text-align: right;
+    color: yellow;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 0.8rem 0;
+}
+
+.form button{
+    font: inherit;
+    cursor: pointer;
+    background-color: #252424;
+    border: 1px solid #252424;
+    color: yellow;
+    padding: 0.25rem 1.5rem;
+    border-radius: 20px;
+    font-weight: bold;
+   margin-top: -0.3rem;
+   margin-left: 1.2rem;
+
+}
+
+.form button:hover,
+.form button:active{
+    background-color: yellow;
+    border-color: yellow;
+    color: #252424;
+}

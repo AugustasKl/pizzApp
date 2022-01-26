@@ -1,24 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Switch } from "react-router-dom";
+import Layout from "./components/layout/Layout";
+import HomePage from "./pages/HomePage";
+import AllPizzas from "./pages/AllPizzas";
+import AllDrinks from "./pages/AllDrinks";
+import PizzaDetail from "./pages/PizzaDetail";
+import Auth from "./pages/Auth";
+import NoPizzaFound from "./components/pizzas/NoPizzaFound";
+import { useSelector } from "react-redux";
 
 function App() {
+  const authData= useSelector(state=>state.auth)
+  console.log(authData.token)
+  console.log(authData)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Layout>
+      <Switch>
+        <Route path="/" exact>
+          <HomePage />
+        </Route>
+        <Route path="/pizzas" exact>
+          <AllPizzas />
+          </Route>
+          <Route path="/pizzas/:pizzaId">
+            <PizzaDetail />
+        </Route>
+        <Route path="/drinks">
+          <AllDrinks />
+        </Route>
+        <Route path="/auth">
+          <Auth />
+        </Route>
+        <Route path='*'>
+          <NoPizzaFound/>
+        </Route>
+      </Switch>
+    </Layout>
   );
 }
 
