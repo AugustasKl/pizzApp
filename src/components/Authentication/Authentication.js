@@ -17,6 +17,7 @@ const Authentication = () => {
   const [isLogin, setIsLogin] = useState(true);
   const switchAuthModeHandler = () => {
     setIsLogin((prevState) => !prevState);
+    console.log(isLogin)
   };
   const enteredInputEmail = useRef();
   const enteredInputPassword = useRef();
@@ -28,6 +29,7 @@ const Authentication = () => {
     const enteredPassword = enteredInputPassword.current.value;
     
     console.log(enteredPassword, enteredEmail);
+    
     dispatch(authActions.userDataHandler({
       email:enteredEmail,
       password:enteredPassword
@@ -37,26 +39,45 @@ const Authentication = () => {
   if (isLogin) {
     url ="https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDDjTL1GI_FBga1VjFhS20d5eiyvYiD_HU";
   } 
-  if(!isLogin && isInitial===false){
+  if(!isLogin){
     url ="https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDDjTL1GI_FBga1VjFhS20d5eiyvYiD_HU";
   }
-  
+  console.log(isInitial)
   useEffect(()=>{
-    if(isInitial){
+    if(isInitial && isLogin){
       isInitial=false
       return
     }
 
-
-    
-    dispatch(fetchAuthRequest(url, data.email, data.password))
-    // history.replace('/')
-    
-    if(isInitial===false){
+    if(isInitial===false && !isLogin){
       isInitial=true
       return
      }
+     if(isInitial===false){
+       isInitial=true
+     }
+    
+    dispatch(fetchAuthRequest(url, data.email, data.password))
+    history.replace('/')
+    
+    
   },[dispatch,history,url, data.email, data.password])
+
+
+  // useEffect(()=>{
+  //   if(!isInitial){
+  //     isInitial=true
+  //     return
+  //   }
+
+  //   if(data.userChanged){
+  //     dispatch(fetchAuthRequest(url, data.email, data.password))
+  //     if(isInitial===false){
+  //     isInitial=true
+  //     return
+  //    }
+  //   }
+  // },[data.userChanged])
 
   return (
     <React.Fragment>
