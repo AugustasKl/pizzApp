@@ -1,35 +1,43 @@
 import PizzaList from "../components/pizzas/PizzaList";
-import { getAllPizzas } from "../lib/api";
+import { fetchAllData, getAllPizzas } from "../lib/api";
 import useHttp from "../customHook/httpHook";
 import { useEffect } from "react";
 import LoadingSpinner from "../components/UI/LoadingSpinner";
 import NoPizzaFound from "../components/pizzas/NoPizzaFound";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 const Pizzas = (props) => {
-  const{sendRequest, status, data:pizzasData, error}=useHttp(getAllPizzas, true)
-  console.log(pizzasData)
+  const dispatch=useDispatch()
+  const pizzaData=useSelector((state)=>state.api.items)
+  // const{sendRequest, status, data:pizzasData, error}=useHttp(getAllPizzas, true)
+  // const data=[...pizzaData]
+  console.log(pizzaData)
 
   useEffect(()=>{
-    sendRequest()
-  },[sendRequest])
+    dispatch(fetchAllData())
+  },[dispatch])
+  // useEffect(() => {
+  //   sendRequest();
+  // }, [sendRequest]);
 
-  if (status === 'pending') {
-    return (
-      <div className='centered'>
-        <LoadingSpinner />
-      </div>
-    );
-  }
+  // if (status === 'pending') {
+  //   return (
+  //     <div className='centered'>
+  //       <LoadingSpinner />
+  //     </div>
+  //   );
+  // }
 
-  if(error){
-    return <p>{error}</p>
-  }
+  // if(error){
+  //   return <p>{error}</p>
+  // }
 
-  if(status==='completed' && (!pizzasData || pizzasData.length===0)){
-    return <NoPizzaFound/>
-  }
-  // props.loadedPizzas(pizzasData)
+  // if(status==='completed' && (!pizzasData || pizzasData.length===0)){
+  //   return <NoPizzaFound/>
+  // }
+  // // props.loadedPizzas(pizzasData)
   return( 
-  <PizzaList pizzas={pizzasData} />
+  <PizzaList pizzas={pizzaData} />
   )
 };
 

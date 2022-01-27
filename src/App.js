@@ -6,17 +6,22 @@ import AllDrinks from "./pages/AllDrinks";
 import PizzaDetail from "./pages/PizzaDetail";
 import Auth from "./pages/Auth";
 import NoPizzaFound from "./components/pizzas/NoPizzaFound";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector} from "react-redux";
+import { fetchAllData } from "./lib/api";
+import { useEffect } from "react";
 
 function App() {
-  const authData= useSelector(state=>state.auth)
-  console.log(authData.token)
-  console.log(authData)
+  // const data=useSelector(state=>state.api.items)
+  // console.log(data)
+  // const dispatch=useDispatch()
+  // useEffect(()=>{
+  //   dispatch(fetchAllData())
+  // },[dispatch])
   return (
     <Layout>
       <Switch>
         <Route path="/" exact>
-          <HomePage />
+          <HomePage/>
         </Route>
         <Route path="/pizzas" exact>
           <AllPizzas />

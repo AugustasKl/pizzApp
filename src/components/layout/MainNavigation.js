@@ -9,8 +9,8 @@ import { authActions } from "../../redux/auth-slice";
 const MainNavigation = () => {
   const dispatch=useDispatch()
   const toggleCart = useSelector((state) => state.cart.cartIsShown);
-  const userIsLoggedIn=useSelector((state)=>state.auth.isLoggedIn)
- 
+  const userIsLoggedIn=useSelector((state)=>state.auth)
+ console.log(userIsLoggedIn)
   const logoutHandler=()=>{
     dispatch(authActions.logoutHandler())
     dispatch(authActions.userIsLoggedIn())
@@ -18,6 +18,7 @@ const MainNavigation = () => {
       email:'',
       password:''
     }))
+    localStorage.removeItem('token')
   }
   return (
     <header className={classes.header}>
@@ -39,12 +40,12 @@ const MainNavigation = () => {
             </Link>
           </li>
           
-          {!userIsLoggedIn && ( 
+          {!userIsLoggedIn.isLoggedIn && !userIsLoggedIn.token && ( 
             <li>
             <Link to="/auth">Login</Link>
           </li>
           )}  
-            {userIsLoggedIn && (
+            {userIsLoggedIn.isLoggedIn && userIsLoggedIn.token  && (
           <li>
             <button className={classes.logout} onClick={logoutHandler}>Logout</button>
           </li>

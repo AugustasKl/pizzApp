@@ -4,8 +4,9 @@ import PopularPizzas from '../pizzas/PopulaPizzas'
 import React from 'react'
 import Footer from '../layout/Footer'
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 const Home=()=>{
-
+   
     return(
         <React.Fragment>
         <section className={classes.section}  >
@@ -21,7 +22,7 @@ const Home=()=>{
 
             </div>
         </section>
-        <PopularPizzas/>
+        <PopularPizzas />
         <Footer/>
         </React.Fragment>
     )

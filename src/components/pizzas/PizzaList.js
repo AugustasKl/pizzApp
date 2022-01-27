@@ -3,7 +3,8 @@ import classes from "./PizzaList.module.css";
 import PizzaItem from "./PizzaItem";
 import Footer from "../layout/Footer";
 const PizzaList = (props) => {
-  console.log(props.pizzas)
+  // const{id, title, ingredients, image, price}=props
+  console.log(props)
   return (
     <React.Fragment>
       <div className={classes.pizzas}>

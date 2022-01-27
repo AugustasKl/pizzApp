@@ -5,19 +5,19 @@ import { authActions } from "../../redux/auth-slice";
 import Footer from "../layout/Footer";
 import Input from "../UI/Input";
 import classes from "./Authentication.module.css";
-import {fetchAuthRequest} from '../../lib/authFunc'
-let isInitial =true
+import { fetchAuthRequest } from "../../lib/authFunc";
+let isInitial = true;
 const Authentication = () => {
-  const history=useHistory()
-  const dispatch=useDispatch()
+  const history = useHistory();
+  const dispatch = useDispatch();
 
-  const data=useSelector((state)=> state.auth.userData)
-  console.log(data)
+  const data = useSelector((state) => state.auth.userData);
+  console.log(data);
 
   const [isLogin, setIsLogin] = useState(true);
   const switchAuthModeHandler = () => {
     setIsLogin((prevState) => !prevState);
-    console.log(isLogin)
+    console.log(isLogin);
   };
   const enteredInputEmail = useRef();
   const enteredInputPassword = useRef();
@@ -27,57 +27,52 @@ const Authentication = () => {
     event.preventDefault();
     const enteredEmail = enteredInputEmail.current.value;
     const enteredPassword = enteredInputPassword.current.value;
-    
+
     console.log(enteredPassword, enteredEmail);
-    
-    dispatch(authActions.userDataHandler({
-      email:enteredEmail,
-      password:enteredPassword
-    }))
-  }
+
+    dispatch(
+      authActions.userDataHandler({
+        email: enteredEmail,
+        password: enteredPassword,
+      })
+    );
+    dispatch(
+      authActions.loginHandler({
+        token: localStorage.getItem('token')
+      })
+    )
+ 
+  };
+
   let url;
   if (isLogin) {
-    url ="https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDDjTL1GI_FBga1VjFhS20d5eiyvYiD_HU";
-  } 
-  if(!isLogin){
-    url ="https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDDjTL1GI_FBga1VjFhS20d5eiyvYiD_HU";
+    url =
+      "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDDjTL1GI_FBga1VjFhS20d5eiyvYiD_HU";
   }
-  console.log(isInitial)
-  useEffect(()=>{
-    if(isInitial && isLogin){
-      isInitial=false
-      return
+  if (!isLogin) {
+    url =
+      "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDDjTL1GI_FBga1VjFhS20d5eiyvYiD_HU";
+  }
+  
+  useEffect(() => {
+    if (isInitial && isLogin) {
+      isInitial = false;
+      return;
     }
 
-    if(isInitial===false && !isLogin){
-      isInitial=true
-      return
-     }
-     if(isInitial===false){
-       isInitial=true
-     }
-    
-    dispatch(fetchAuthRequest(url, data.email, data.password))
-    history.replace('/')
-    
-    
-  },[dispatch,history,url, data.email, data.password])
+    if (isInitial === false && !isLogin) {
+      isInitial = true;
+      return;
+    }
+    if (isInitial === false) {
+      isInitial = true;
+    }
+
+    dispatch(fetchAuthRequest(url, data.email, data.password));
+    history.replace("/");
+  }, [dispatch, history, url, data.email, data.password]);
 
 
-  // useEffect(()=>{
-  //   if(!isInitial){
-  //     isInitial=true
-  //     return
-  //   }
-
-  //   if(data.userChanged){
-  //     dispatch(fetchAuthRequest(url, data.email, data.password))
-  //     if(isInitial===false){
-  //     isInitial=true
-  //     return
-  //    }
-  //   }
-  // },[data.userChanged])
 
   return (
     <React.Fragment>

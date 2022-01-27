@@ -1,13 +1,13 @@
 .image {
-  width: 17rem;
-  height: 17rem;
+  width: 18rem;
+  height: 18rem;
 }
 
 .pizzas {
   margin-left: 1.5rem;
   font-size: 1.25rem;
   margin-right: 1.5rem;
-  padding-top: 2rem;
+  padding-top: 1rem;
   padding-bottom: 0.5rem;
   max-height: 60rem;
   width: 20%;
@@ -23,7 +23,7 @@
 .title {
   color: yellow;
   font-size: 1.7rem;
-  padding: 2% 0;
+  padding: 3.5% 0;
 }
 
 .ingredients {
