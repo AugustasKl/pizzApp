@@ -67,3 +67,31 @@
     background-color: yellow;
     color: #38015c;;
 }
+.social button{
+    margin-top: 1.5rem;
+    width: 100%;
+    height:3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background: transparent;
+    border-color:transparent;
+    border: 1px solid yellow;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.social img{
+    position: absolute;
+    width: 1.5rem;
+    height: 1.5rem;
+    top:25%;
+    left: 5%;
+    
+}
+.social p{
+margin-top: 1rem;
+margin-left: 1rem;
+color: yellow;
+}

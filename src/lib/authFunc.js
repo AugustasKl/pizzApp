@@ -71,16 +71,27 @@ export const fetchAuthRequest = (url, emailInput, passwordInput) => {
 
         // authCtx.login(data.idToken,expirationTime.toISOString())
      
-        dispatch(authActions.userIsLoggedIn());
-        localStorage.setItem('token', data.idToken)
-        // if (data) {
-        //   dispatch(authActions.loginHandler({
-        //     token:data.idToken
-        //   }))
-        // }
+        // localStorage.setItem('token', data.idToken)
+        if (data.idToken) {
+          dispatch(authActions.userIsLoggedIn());
+          dispatch(authActions.loginHandler({
+            token:data.idToken
+          }))
+          localStorage.setItem('token', data.idToken)
+        }
       })
       .catch((err) => {
         alert(err.message);
       });
   };
 };
+
+
+const calculateRemainingTime=(expirationTime)=>{
+  const currentTime=new Date().getTime()
+  // console.log(currentTime)
+  const adjExpirationTime=new Date(expirationTime).getTime()
+  const remainingDuration= adjExpirationTime-currentTime
+  console.log(remainingDuration)
+}
+calculateRemainingTime(20)

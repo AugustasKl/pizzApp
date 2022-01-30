@@ -6,13 +6,15 @@ import Footer from "../layout/Footer";
 import Input from "../UI/Input";
 import classes from "./Authentication.module.css";
 import { fetchAuthRequest } from "../../lib/authFunc";
-let isInitial = true;
+import { authentication } from "../../config/firebase-config";
+import {signInWithPopup, GoogleAuthProvider} from 'firebase/auth'
+// let isInitial = true;
+import googleLogo from '../../assets/Google.svg'
 const Authentication = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
   const data = useSelector((state) => state.auth.userData);
-  console.log(data);
 
   const [isLogin, setIsLogin] = useState(true);
   const switchAuthModeHandler = () => {
@@ -28,23 +30,20 @@ const Authentication = () => {
     const enteredEmail = enteredInputEmail.current.value;
     const enteredPassword = enteredInputPassword.current.value;
 
-    console.log(enteredPassword, enteredEmail);
+    // console.log(enteredPassword, enteredEmail);
 
-    dispatch(
-      authActions.userDataHandler({
-        email: enteredEmail,
-        password: enteredPassword,
-      })
-    );
-    dispatch(
-      authActions.loginHandler({
-        token: localStorage.getItem('token')
-      })
-    )
- 
-  };
-
-  let url;
+    // dispatch(
+    //   authActions.userDataHandler({
+    //     email: enteredEmail,
+    //     password: enteredPassword,
+    //   })
+    // );
+    // dispatch(
+    //   authActions.loginHandler({
+    //     token: localStorage.getItem('token')
+    //   })
+    // )
+ let url;
   if (isLogin) {
     url =
       "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDDjTL1GI_FBga1VjFhS20d5eiyvYiD_HU";
@@ -53,24 +52,54 @@ const Authentication = () => {
     url =
       "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDDjTL1GI_FBga1VjFhS20d5eiyvYiD_HU";
   }
+
+  dispatch(fetchAuthRequest(url, enteredEmail,enteredPassword));
+  history.replace("/");
+
+  };
+  const signInWithGoogle=()=>{
+    const provider=new GoogleAuthProvider()
+    signInWithPopup(authentication, provider)
+    .then((res)=>{
+      if(res._tokenResponse.idToken){
+        dispatch(authActions.userIsLoggedIn())
+        dispatch(authActions.loginHandler({
+          token:res._tokenResponse.idToken
+        }))
+        localStorage.setItem('token', res._tokenResponse.idToken)
+        history.replace('/')
+      }
+    })
+    .catch((err)=>{
+      console.log(err)
+    })
+  }
+
   
-  useEffect(() => {
-    if (isInitial && isLogin) {
-      isInitial = false;
-      return;
-    }
-
-    if (isInitial === false && !isLogin) {
-      isInitial = true;
-      return;
-    }
-    if (isInitial === false) {
-      isInitial = true;
-    }
-
-    dispatch(fetchAuthRequest(url, data.email, data.password));
-    history.replace("/");
-  }, [dispatch, history, url, data.email, data.password]);
+  // console.log(isInitial)
+  // useEffect(() => {
+  //   //if true and true set isInitial to False
+  //   if (sendRequest && isLogin) {
+  //    dispatch(authActions.sendRequest())
+  //     return;
+  //   }
+  //   //if false and false set isInitial
+  //   if (!sendRequest && !isLogin) {
+  //     dispatch(authActions.sendRequest())
+  //     return;
+  //   }
+  //   // if (isInitial === false) {
+  //   //   isInitial = true;
+      
+  //   // }
+  //   // if(isInitial === true){
+  //   //   isInitial=true
+  //   //   return
+  //   // }
+    
+  //   dispatch(fetchAuthRequest(url, data.email, data.password));
+  //   history.replace("/");
+  // }, [dispatch, history, url, data.email, data.password]);
 
 
 
@@ -89,6 +118,7 @@ const Authentication = () => {
             {isLogin ? "Create new account" : "Login with existing account"}
           </button>
         </div>
+        <div className={classes.login}>
         <form onSubmit={submitFormHandler}>
           <div className={classes.input}>
             <Input
@@ -135,6 +165,15 @@ const Authentication = () => {
             </button>
           </div>
         </form>
+       {isLogin && ( 
+         <div className={classes.social}>
+            <button onClick={signInWithGoogle}>
+            <img src={googleLogo} alt="Google Login"/>
+            <p className={classes.text}>Sign in with Google</p>
+            </button>
+        </div> 
+       )} 
+        </div>
       </section>
       <Footer />
     </React.Fragment>

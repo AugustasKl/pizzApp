@@ -9,32 +9,35 @@ import { useSelector } from "react-redux";
 const Pizzas = (props) => {
   const dispatch=useDispatch()
   const pizzaData=useSelector((state)=>state.api.items)
+  const notifications=useSelector((state)=>state.ui.status)
+  
+  console.log(notifications)
   // const{sendRequest, status, data:pizzasData, error}=useHttp(getAllPizzas, true)
   // const data=[...pizzaData]
   console.log(pizzaData)
 
   useEffect(()=>{
-    dispatch(fetchAllData())
+    dispatch(fetchAllData('pizzas'))
   },[dispatch])
   // useEffect(() => {
   //   sendRequest();
   // }, [sendRequest]);
 
-  // if (status === 'pending') {
-  //   return (
-  //     <div className='centered'>
-  //       <LoadingSpinner />
-  //     </div>
-  //   );
-  // }
+  if (notifications === 'pending') {
+    return (
+      <div className='centered'>
+        <LoadingSpinner />
+      </div>
+    );
+  }
 
-  // if(error){
-  //   return <p>{error}</p>
-  // }
+  if(notifications === 'error'){
+    return <p class='centered'style={{color:"yellow"}}>Unable to fetch data from server</p>
+  }
 
-  // if(status==='completed' && (!pizzasData || pizzasData.length===0)){
-  //   return <NoPizzaFound/>
-  // }
+  if(notifications==='success' && (!pizzaData || pizzaData.length===0)){
+    return <NoPizzaFound/>
+  }
   // // props.loadedPizzas(pizzasData)
   return( 
   <PizzaList pizzas={pizzaData} />

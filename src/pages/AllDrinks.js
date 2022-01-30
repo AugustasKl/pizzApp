@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import DrinksList from "../components/drinks/DrinksList";
 import useHttp from "../customHook/httpHook";
-import { fetchAllDrinks } from "../lib/api";
+import { fetchAllData, fetchAllDrinks } from "../lib/api";
 import LoadingSpinner from "../components/UI/LoadingSpinner";
 import NoPizzaFound from "../components/pizzas/NoPizzaFound";
 import { useDispatch } from "react-redux";
@@ -11,13 +11,28 @@ const Drinks = () => {
   
   const dispatch=useDispatch()
   const drinksData=useSelector((state)=>state.api.drinks)
-  
+  const notifications=useSelector((state)=>state.ui.status)
   console.log(drinksData)
-  
   useEffect(()=>{
-    console.log('labas')
-    dispatch(fetchAllDrinks())
+    dispatch(fetchAllData('drinks'))
   },[dispatch])
+
+  if (notifications === 'pending') {
+    return (
+      <div className='centered'>
+        <LoadingSpinner />
+      </div>
+    );
+  }
+
+  if(notifications === 'error'){
+    return <p class='centered'style={{color:"yellow"}}>Unable to fetch data from server</p>
+  }
+
+  if(notifications==='success' && (!drinksData || drinksData.length===0)){
+    return <NoPizzaFound/>
+  }
+  
   
   return <DrinksList drinks={drinksData} />;
 };

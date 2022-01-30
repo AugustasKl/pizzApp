@@ -6,7 +6,7 @@ const CartButton=()=>{
     const dispatch=useDispatch()
     const cartTotal=useSelector(state=>state.cart)
     // console.log(cartTotal)
-    const cartTotalAmounFixed=cartTotal.totalAmount.toFixed(2)
+    const cartTotalAmounFixed=Math.max(cartTotal.totalAmount,0).toFixed(2)
     const numberOfCartItems=cartTotal.cartItems.reduce((curNumb, item)=>{
         return curNumb+item.quantity
     },0)

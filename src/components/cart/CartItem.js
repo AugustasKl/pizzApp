@@ -5,7 +5,7 @@ import { useState } from "react";
 
 const CartItem = (props) => {
   // const [cartMessage, setCartMessage]=useState(true)
-  const{title, id, price, quantity}=props
+  const{title, id, price, quantity}=props.item
   if(!props){
     
   }

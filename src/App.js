@@ -8,15 +8,31 @@ import Auth from "./pages/Auth";
 import NoPizzaFound from "./components/pizzas/NoPizzaFound";
 import { useDispatch, useSelector} from "react-redux";
 import { fetchAllData } from "./lib/api";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
+import { authActions } from "./redux/auth-slice";
 
 function App() {
-  // const data=useSelector(state=>state.api.items)
-  // console.log(data)
-  // const dispatch=useDispatch()
-  // useEffect(()=>{
-  //   dispatch(fetchAllData())
-  // },[dispatch])
+  const dispatch=useDispatch()
+  const token = localStorage.getItem('token')
+  console.log(token)
+// const status=useSelector((state)=>state.auth.token)
+//     const kumpis =useCallback(()=>{
+//     dispatch(authActions.logoutHandler())
+//     dispatch(authActions.userIsLoggedIn())
+//     localStorage.removeItem('token')
+//     console.log('labas')
+//     },[dispatch,status]) 
+  
+  useEffect(()=>{
+    dispatch(authActions.loginHandler({
+      token:token
+    }))
+    if(token){
+      dispatch(authActions.userIsLoggedIn())
+      // setTimeout(kumpis, 3000)
+  }
+},[dispatch, token])
+
   return (
     <Layout>
       <Switch>

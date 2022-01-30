@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux'
 import { cartActions } from '../../redux/cart-slice'
 const PizzaItem=(props)=>{
     const{title, price, ingredients, image, id}=props
-    // console.log(ingredients)
+    
     const dispatch=useDispatch()
     const addToCartHandler=(quantity)=>{
         dispatch(cartActions.importItemToCart({

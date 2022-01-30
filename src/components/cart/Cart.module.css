@@ -35,8 +35,20 @@
 .actions{
     text-align: right;
 }
+.message{
+    margin: 2rem auto;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-.actions button{
+
+
+
+
+.actions button,
+.actions a{ 
     font:inherit;
     cursor: pointer;
     background-color: transparent;
@@ -44,9 +56,11 @@
     padding: 0.5rem 2rem;
     margin-left: 1rem;
     color: yellow;
+    text-decoration: none;
 }
 
-.actions button:hover{
+.actions button:hover,
+.actions a:hover{
     background-color: yellow;
     color:#101426;
     border-color: yellow;

@@ -7,8 +7,8 @@ import { authActions } from "../redux/auth-slice"
 
 const Auth=()=>{
   // const dispatch=useDispatch()
-  const authData=useSelector((state)=>state.auth)
-  console.log(authData)
+  // const authData=useSelector((state)=>state.auth)
+  // console.log(authData)
   // const dataStorage=localStorage.setItem("token",)
   // console.log(dataStorage)
 

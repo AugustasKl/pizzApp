@@ -5,21 +5,29 @@ import Cart from "../cart/Cart";
 import { useDispatch, useSelector } from "react-redux";
 import CartButton from "../cart/CartButton";
 import { authActions } from "../../redux/auth-slice";
+import { cartActions } from "../../redux/cart-slice";
 
 const MainNavigation = () => {
   const dispatch=useDispatch()
+  const sendRequest=useSelector((state)=>state.auth.sendRequest)
   const toggleCart = useSelector((state) => state.cart.cartIsShown);
+  const cartData=useSelector((state)=>state.cart.cartItems)
   const userIsLoggedIn=useSelector((state)=>state.auth)
  console.log(userIsLoggedIn)
-  const logoutHandler=()=>{
-    dispatch(authActions.logoutHandler())
-    dispatch(authActions.userIsLoggedIn())
-    dispatch(authActions.userDataHandler({
-      email:'',
-      password:''
-    }))
-    localStorage.removeItem('token')
-  }
+ const logoutHandler=()=>{
+   dispatch(authActions.logoutHandler())
+   dispatch(authActions.userIsLoggedIn())
+   // dispatch(authActions.userDataHandler({
+     //   email:'',
+     //   password:''
+     // }))
+     // dispatch(authActions.sendRequest())
+     // dispatch(cartActions.emptyCart({
+       //   cartItems:cartData=[]
+       // }))
+       localStorage.removeItem('token')
+      }
+      // setTimeout(logoutHandler, 3000)
   return (
     <header className={classes.header}>
       <nav className={classes.nav}>

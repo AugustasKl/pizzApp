@@ -1,8 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+
 const initialApiState = {
   items: [],
-  drinks:[]
+  drinks:[],
+  pizzaId:{},
 };
 const apiSlice = createSlice({
   name: "api",
@@ -13,6 +15,9 @@ const apiSlice = createSlice({
     },
     loadDrinks(state, action){
         state.drinks=action.payload.drinks
+    },
+    loadPizzaId(state,action){
+      state.pizzaId=action.payload.pizzaId
     }
   },
 });

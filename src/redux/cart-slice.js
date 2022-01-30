@@ -4,6 +4,7 @@ const initialCartSlice = {
   cartItems: [],
   cartIsShown: false,
   totalAmount: 0,
+  cartMessage:false
 };
 const cartSlice = createSlice({
   name: "cart",
@@ -59,6 +60,13 @@ const cartSlice = createSlice({
       state.cartIsShown = !state.cartIsShown;
     }
   },
+  cartMessage(state){
+    state.cartMessage=!state.cartMessage
+  },
+  emptyCart(state,action){
+    state.cartItems=action.paylaod.cartItems
+  },
+
 });
 
 export const cartActions = cartSlice.actions;

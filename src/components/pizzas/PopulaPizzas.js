@@ -3,36 +3,47 @@ import PizzaItem from "./PizzaItem";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { fetchAllData } from "../../lib/api";
+import LoadingSpinner from "../UI/LoadingSpinner";
 const PopularPizzas = () => {
   const dispatch = useDispatch();
   const pizzaData = useSelector((state) => state.api.items);
-  console.log(pizzaData);
-  // const[randomPizzas, setRandomPizzas]=useState(pizzaData)
+  const status=useSelector((state)=>state.ui.status)
 
   useEffect(() => {
-    dispatch(fetchAllData());
+    dispatch(fetchAllData("pizzas"));
   }, [dispatch]);
 
-  const shuffled=[...pizzaData].sort(()=>0.5-Math.random())
-  let selected=shuffled.slice(0,4)
- 
+  if(status==='pending'){
+    return (
+      <div className='centered'>
+        <LoadingSpinner />
+      </div>
+    );
+  }
+
+  if(status === 'error'){
+    return <p class='centered'style={{color:"yellow"}}>Unable to fetch data from server</p>
+  }
+
+  const shuffled = [...pizzaData].sort(() => 0.5 - Math.random());
+  let selected = shuffled.slice(0, 4);
 
   return (
     <section className={classes.pizza}>
-      <h1 className={classes.text}>Our Most Popular Choices</h1>
+      <h1 className={classes.text}>Our Recommendations to You</h1>
       <ul className={classes.list}>
         {selected.map((pizza) => {
-            return (
-              <PizzaItem
-                id={pizza.id}
-                key={pizza.id}
-                title={pizza.title}
-                ingredients={pizza.ingredients}
-                image={pizza.image}
-                price={pizza.price}
-              />
-            );
-          })}
+          return (
+            <PizzaItem
+              id={pizza.id}
+              key={pizza.id}
+              title={pizza.title}
+              ingredients={pizza.ingredients}
+              image={pizza.image}
+              price={pizza.price}
+            />
+          );
+        })}
       </ul>
     </section>
   );

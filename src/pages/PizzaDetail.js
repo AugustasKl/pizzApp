@@ -3,8 +3,11 @@ import { Route } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import PizzaId from "../components/pizzas/PizzaId";
 import useHttp from "../customHook/httpHook";
-import { getSpecificPizza } from "../lib/api";
+import { getDetailedPizza, getSpecificPizza } from "../lib/api";
 import LoadingSpinner from "../components/UI/LoadingSpinner";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { fetchAllData } from "../lib/api";
 
 // const DUMMY_PIZZAS = [
 //   {
@@ -27,15 +30,52 @@ import LoadingSpinner from "../components/UI/LoadingSpinner";
 // ];
 
 const PizzaDetail = () => {
+  const dispatch = useDispatch();
   const params = useParams();
-  const {
-    sendRequest,
-    status,
-    data: pizzaData,
-    error,
-  } = useHttp(getSpecificPizza, true);
+  const status = useSelector((state) => state.ui.status);
+  const pizzaDetailedData = useSelector((state) => state.api.pizzaId);
 
-  console.log(pizzaData)
+  useEffect(() => {
+    console.log("effect");
+    
+
+      dispatch(getDetailedPizza(params.pizzaId));
+    
+  }, []);
+
+  if (status === "pending") {
+    return (
+      <div class="centered">
+        <LoadingSpinner />
+      </div>
+    );
+  }
+
+  if (!pizzaDetailedData.title) {
+    return (
+      <p class="centered" style={{ color: "yellow" }}>
+        No such pizza was found
+      </p>
+    );
+  }
+  if (status === "error") {
+    return <p>'error'</p>;
+  }
+
+  // useEffect(() => {
+  //   console.log('hi')
+  //   dispatch(fetchAllData());
+  // }, [dispatch,params.pizzaId]);
+  // const effectData=useSelector((state)=>state.api.items)
+  // console.log(effectData)
+  // const {
+  //   sendRequest,
+  //   status,
+  //   data: pizzaData,
+  //   error,
+  // } = useHttp(getSpecificPizza, true);
+
+  // console.log(pizzaData)
 
   //   console.log(DUMMY_PIZZAS);
   //   const hello = "hello";
@@ -47,36 +87,22 @@ const PizzaDetail = () => {
   //   if (!pizza) {
   //     <p>no pizzas found</p>;
   //   }
-  useEffect(() => {
-    sendRequest(params.pizzaId);
-  }, [sendRequest]);
-  if (status === "pending") {
-    return (
-      <div className="centered">
-        <LoadingSpinner />
-      </div>
-    );
-  }
+  // useEffect(() => {
+  //   sendRequest(params.pizzaId);
+  // }, [sendRequest]);
 
-  if (!pizzaData) {
-    return <p>No such pizza was found</p>;
-  }
-
-  if (error) {
-    return <p>{error}</p>;
-  }
+  // if (error) {
+  //   return <p>{error}</p>;
+  // }
 
   return (
     <React.Fragment>
       <PizzaId
-        title={pizzaData.title}
-        ingredients={pizzaData.ingredients}
-        image={pizzaData.image}
-        price={pizzaData.price}
+        title={pizzaDetailedData.title}
+        ingredients={pizzaDetailedData.ingredients}
+        image={pizzaDetailedData.image}
+        price={pizzaDetailedData.price}
       />
-      {/* <Route path={`/pizzas/:pizzaId`}>
-                lod
-            </Route> */}
     </React.Fragment>
   );
 };
