@@ -6,6 +6,9 @@ import facebookLogo from '../../assets/Facebook.svg'
 import instagramLogo from '../../assets/Instagram.svg'
 import visaLogo from '../../assets/Visa.svg'
 import mastercardLogo from '../../assets/Mastercard.svg'
+
+
+
 const Footer=()=>{
     return(
         <footer className={classes.footer}>
@@ -17,6 +20,7 @@ const Footer=()=>{
             <div className={classes.down}>
             <div className={classes.about}>
                 <h4>Pizza App</h4>
+                <div className={classes.pizza}>
                 <Link to='/about-us'>
                     About Us
                 </Link>
@@ -26,11 +30,14 @@ const Footer=()=>{
                 <Link to='/'>
                     Restaurants
                 </Link>
+                </div>
             </div>
             <div>
                 <h4>CONTACT US</h4>
+                <div> 
                 <a href="mailto:1111@example.com">info@pizzaapp.com</a>
                 <p><a href="tel:1234">1234</a></p>
+                </div>
             </div>
             <div>
                 <h4>FOLLOW</h4>

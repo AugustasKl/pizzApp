@@ -14,11 +14,11 @@
 .cart h2{
     font-size: 1.7rem;
     margin-left: 1rem;
-}
-.seperator{
+    margin: 1rem 0;
     border-bottom: 1px solid yellow;
-    
+    padding: 1rem;
 }
+
 .total{
     display: flex;
     justify-content: space-between;

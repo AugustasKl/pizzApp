@@ -10,11 +10,13 @@ import { authentication } from "../../config/firebase-config";
 import {signInWithPopup, GoogleAuthProvider} from 'firebase/auth'
 // let isInitial = true;
 import googleLogo from '../../assets/Google.svg'
+import { cartActions } from "../../redux/cart-slice";
 const Authentication = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-
-  const data = useSelector((state) => state.auth.userData);
+ const cartItems=useSelector((state)=>state.cart.cartItems)
+  const token = useSelector((state) => state.auth);
+console.log(cartItems)
 
   const [isLogin, setIsLogin] = useState(true);
   const switchAuthModeHandler = () => {
@@ -55,18 +57,26 @@ const Authentication = () => {
 
   dispatch(fetchAuthRequest(url, enteredEmail,enteredPassword));
   history.replace("/");
-
+  dispatch(authActions.emailHandler({
+    email:enteredEmail
+  }))
+  // localStorage.setItem('cartItems', JSON.stringify(cartItems))
   };
   const signInWithGoogle=()=>{
     const provider=new GoogleAuthProvider()
     signInWithPopup(authentication, provider)
     .then((res)=>{
+      console.log(res)
       if(res._tokenResponse.idToken){
         dispatch(authActions.userIsLoggedIn())
         dispatch(authActions.loginHandler({
           token:res._tokenResponse.idToken
         }))
         localStorage.setItem('token', res._tokenResponse.idToken)
+        dispatch(authActions.emailHandler({
+          email:res._tokenResponse.email
+        }))
+        // localStorage.setItem('cartItems', JSON.stringify(cartItems))
         history.replace('/')
       }
     })
@@ -74,34 +84,6 @@ const Authentication = () => {
       console.log(err)
     })
   }
-
-  
-  // console.log(isInitial)
-  // useEffect(() => {
-  //   //if true and true set isInitial to False
-  //   if (sendRequest && isLogin) {
-  //    dispatch(authActions.sendRequest())
-  //     return;
-  //   }
-  //   //if false and false set isInitial
-  //   if (!sendRequest && !isLogin) {
-  //     dispatch(authActions.sendRequest())
-  //     return;
-  //   }
-  //   // if (isInitial === false) {
-  //   //   isInitial = true;
-      
-  //   // }
-  //   // if(isInitial === true){
-  //   //   isInitial=true
-  //   //   return
-  //   // }
-    
-  //   dispatch(fetchAuthRequest(url, data.email, data.password));
-  //   history.replace("/");
-  // }, [dispatch, history, url, data.email, data.password]);
-
-
 
   return (
     <React.Fragment>

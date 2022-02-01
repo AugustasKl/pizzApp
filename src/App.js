@@ -10,28 +10,47 @@ import { useDispatch, useSelector} from "react-redux";
 import { fetchAllData } from "./lib/api";
 import { useCallback, useEffect } from "react";
 import { authActions } from "./redux/auth-slice";
+import { cartActions } from "./redux/cart-slice";
 
 function App() {
   const dispatch=useDispatch()
   const token = localStorage.getItem('token')
-  console.log(token)
-// const status=useSelector((state)=>state.auth.token)
-//     const kumpis =useCallback(()=>{
-//     dispatch(authActions.logoutHandler())
-//     dispatch(authActions.userIsLoggedIn())
-//     localStorage.removeItem('token')
-//     console.log('labas')
-//     },[dispatch,status]) 
+  // const cartItems=JSON.parse(localStorage.getItem('cartItems'|| [] ))
+const status=useSelector((state)=>state.auth.token)
+const data=useSelector((state)=>state.auth.isLoggedIn)
+console.log(data)
+
+
+    const kumpis =useCallback(()=>{
+    dispatch(authActions.logoutHandler())
+    dispatch(authActions.userIsLoggedIn())
+    dispatch(cartActions.cartMessage())
+    localStorage.removeItem('token')
+    localStorage.removeItem('cartItems')
+    dispatch(authActions.emailHandler({
+      email:''
+    }))
+    console.log('labas')
+  },[dispatch,status]) 
   
   useEffect(()=>{
     dispatch(authActions.loginHandler({
       token:token
     }))
     if(token){
-      dispatch(authActions.userIsLoggedIn())
-      // setTimeout(kumpis, 3000)
+      setTimeout(kumpis, 60000000)
   }
-},[dispatch, token])
+},[dispatch, token, kumpis])
+
+// useEffect(()=>{
+//   if(token){
+//       dispatch(cartActions.replaceCart({
+//   cartItems:cartItems
+// }))
+//   }
+// },[cartItems, dispatch,token])
+
+
 
   return (
     <Layout>

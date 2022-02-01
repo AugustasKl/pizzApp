@@ -35,7 +35,13 @@
     height: 6rem;
     margin-right: 6rem;
 }
-.about{
+.about li{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap:0.25rem;
+}
+.pizza{
     display: flex;
     flex-direction: column;
     justify-content: space-around;

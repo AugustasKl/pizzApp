@@ -3,6 +3,20 @@ import AddItemForm from '../layout/AddItemForm'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { cartActions } from '../../redux/cart-slice'
+import {motion} from 'framer-motion'
+
+
+const containerVariants={
+    hover:{
+        scale:1.05,
+        transition:{
+            duration:0.3
+        }
+    }
+  }
+  
+
+
 const PizzaItem=(props)=>{
     const{title, price, ingredients, image, id}=props
     
@@ -18,7 +32,10 @@ const PizzaItem=(props)=>{
     }
 
     return(
-        <li className={classes.pizzas}>
+        <motion.li className={classes.pizzas}
+            variants={containerVariants}
+            whileHover='hover'
+        >
             <Link className={classes.specific} to={`/pizzas/${id}`}>
             <div className={classes.item}>
             <img className={classes.image} src={image} alt={title}/>
@@ -36,7 +53,7 @@ const PizzaItem=(props)=>{
             <div>
                 <AddItemForm onAddToCart={addToCartHandler}/>
             </div>
-        </li>
+        </motion.li>
     )
 }
 export default PizzaItem

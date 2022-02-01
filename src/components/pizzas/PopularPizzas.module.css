@@ -15,6 +15,8 @@
 }
 
 
+
+
 .list{
     display: flex;
     justify-content: space-around;
@@ -30,18 +32,4 @@
     padding: 2% 0;
     font-size: 2.65rem;
    
-}
-.text::after{
-    display:block;
-    clear:both;
-    content : "";
-    position: relative;
-    /* left    : 0; */
-    /* bottom  : 0; */
-    /* max-width:80%; */
-    height  : 1px;
-    width   : 90%;  /* or 100px */
-    border-bottom:1px solid yellow;
-    margin:0 auto;
-    padding: 1.5% 0;
 }

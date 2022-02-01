@@ -1,5 +1,6 @@
 import { authActions } from "../redux/auth-slice";
 
+
 // export const fetchAuthRequest = (url, emailInput, PasswordInput) => {
 //   return async (dispatch) => {
 //     const fetchRequest = async () => {
@@ -87,11 +88,11 @@ export const fetchAuthRequest = (url, emailInput, passwordInput) => {
 };
 
 
-const calculateRemainingTime=(expirationTime)=>{
-  const currentTime=new Date().getTime()
-  // console.log(currentTime)
-  const adjExpirationTime=new Date(expirationTime).getTime()
-  const remainingDuration= adjExpirationTime-currentTime
-  console.log(remainingDuration)
-}
-calculateRemainingTime(20)
+// const calculateRemainingTime=(expirationTime)=>{
+//   const currentTime=new Date().getTime()
+//   // console.log(currentTime)
+//   const adjExpirationTime=new Date(expirationTime).getTime()
+//   const remainingDuration= adjExpirationTime-currentTime
+//   console.log(remainingDuration)
+// }
+// calculateRemainingTime(20)

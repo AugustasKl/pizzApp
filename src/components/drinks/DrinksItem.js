@@ -2,6 +2,18 @@ import classes from "./DrinksItem.module.css";
 import AddItemForm from "../layout/AddItemForm";
 import { useDispatch } from "react-redux";
 import { cartActions } from "../../redux/cart-slice";
+import {motion} from 'framer-motion'
+
+const containerVariants={
+  hover:{
+      scale:1.05,
+      transition:{
+          duration:0.3
+      }
+  }
+}
+
+
 const DrinksItem = (props) => {
   const dispatch = useDispatch();
   const { id, image, title, price } = props;
@@ -18,7 +30,9 @@ const DrinksItem = (props) => {
   };
 
   return (
-    <li className={classes.drinks}>
+    <motion.li className={classes.drinks}
+    variants={containerVariants}
+    whileHover='hover'>
       <div className={classes.item}>
         <img className={classes.image} src={image} alt={title} />
         <div className={classes.title}>{props.title}</div>
@@ -27,7 +41,7 @@ const DrinksItem = (props) => {
       <div className={classes.add}>
         <AddItemForm onAddToCart={addToCartHandler} />
       </div>
-    </li>
+    </motion.li>
   );
 };
 export default DrinksItem;

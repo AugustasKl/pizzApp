@@ -58,15 +58,14 @@ const cartSlice = createSlice({
     },
     toggleCart(state) {
       state.cartIsShown = !state.cartIsShown;
-    }
-  },
+    },
   cartMessage(state){
     state.cartMessage=!state.cartMessage
   },
-  emptyCart(state,action){
-    state.cartItems=action.paylaod.cartItems
-  },
-
+  // replaceCart(state,action){
+  //    state.cartItems.push(action.payload.cartItems)
+  // }
+ },
 });
 
 export const cartActions = cartSlice.actions;
