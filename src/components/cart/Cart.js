@@ -2,40 +2,43 @@ import CartItem from "./CartItem";
 import classes from "./Cart.module.css";
 import Modal from "../UI/Modal";
 import { useDispatch } from "react-redux";
+import { useEffect } from "react";
 import { cartActions } from "../../redux/cart-slice";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import StripeCheckoutButton from "../stripe/StripeCheckoutButton";
 import { motion } from "framer-motion";
 
-const containerVariants={
-  hidden:{
-    opacity:0,
-    translateX:-30
+const containerVariants = {
+  hidden: {
+    opacity: 0,
+    translateX: -30,
   },
-  visible:{
-    opacity:1,
-    translateX:0,
-  
-  transition:{
-    duration:1,
-    ease: "easeInOut" 
-  }},
-}
-const listVariants={
-  hidden:{
-    opacity:0,
-    translateX:30
+  visible: {
+    opacity: 1,
+    translateX: 0,
+
+    transition: {
+      duration: 1,
+      ease: "easeInOut",
+    },
   },
-  visible:{
-    opacity:1,
-    translateX:0,
-  
-  transition:{
-    duration:1,
-    ease: "easeInOut" 
-  }},
-}
+};
+const listVariants = {
+  hidden: {
+    opacity: 0,
+    translateX: 30,
+  },
+  visible: {
+    opacity: 1,
+    translateX: 0,
+
+    transition: {
+      duration: 1,
+      ease: "easeInOut",
+    },
+  },
+};
 const buttonVariants = {
   hover: {
     scale: 1.1,
@@ -52,7 +55,7 @@ const Cart = () => {
   const history = useHistory();
   const cartData = useSelector((state) => state.cart);
 
-  // console.log(cartData)
+  console.log(cartData);
   console.log(cartData);
   const dispatch = useDispatch();
   const closeButtonHandler = () => {
@@ -64,13 +67,35 @@ const Cart = () => {
     history.push("/auth");
   };
 
-  const cartTotalAmounFixed = Math.max(cartData.totalAmount, 0).toFixed(2);
+  const reducedData=cartData.cartItems.reduce((tot,arr)=>{
+    return tot +arr.total
+},0)
+
+const reducedDataFixed = Math.max(reducedData, 0).toFixed(2);
+  // const cartTotalAmounFixed = Math.max(cartData.totalAmount, 0).toFixed(2);
+
+  // const storageCartItems = JSON.parse(localStorage.getItem("cartItems"));
+  // console.log(storageCartItems);
+
+  // useEffect(() => {
+  //   dispatch(
+  //     cartActions.replaceCart({
+  //       cartItems: storageCartItems || [],
+  //     })
+  //   );
+  // }, [dispatch, storageCartItems]);
+
   return (
     <Modal>
       <div className={classes.cart}>
-        <motion.h2 variants={containerVariants} initial='hidden' animate='visible'
-        >Your Shopping Cart</motion.h2>
-        <motion.ul variants={listVariants} initial='hidden' animate='visible'>
+        <motion.h2
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          Your Shopping Cart
+        </motion.h2>
+        <motion.ul variants={listVariants} initial="hidden" animate="visible">
           {cartData.cartItems.map((item) => {
             return (
               <CartItem
@@ -85,16 +110,20 @@ const Cart = () => {
             );
           })}
         </motion.ul>
-        <motion.div className={classes.total} variants={containerVariants} initial='hidden' animate='visible'>
-  
+        <motion.div
+          className={classes.total}
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
           <span className={classes.amount}>Total Amount </span>
-          <span>{cartTotalAmounFixed} €</span>
+          <span>{reducedDataFixed} €</span>
         </motion.div>
         <div className={classes.actions}>
           <button className={classes.close} onClick={closeButtonHandler}>
             Close
           </button>
-          <StripeCheckoutButton total={cartTotalAmounFixed} />
+          <StripeCheckoutButton total={reducedDataFixed} />
           {!cartData.cartMessage && (
             <p className={classes.message}>
               We are sorry but You have to be logged in order to complete Your
@@ -102,7 +131,13 @@ const Cart = () => {
             </p>
           )}
           {!cartData.cartMessage && (
-            <motion.button onClick={openLoginHanhler} variants={buttonVariants} whileHover="hover">Login</motion.button>
+            <motion.button
+              onClick={openLoginHanhler}
+              variants={buttonVariants}
+              whileHover="hover"
+            >
+              Login
+            </motion.button>
           )}
         </div>
       </div>

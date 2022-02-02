@@ -8,6 +8,7 @@ import { authActions } from "../../redux/auth-slice";
 import { cartActions } from "../../redux/cart-slice";
 import OrderDetails from "./OrderDetails";
 import {motion} from 'framer-motion'
+import { useCallback } from "react";
 
 const MainNavigation = () => {
   const dispatch=useDispatch()
@@ -21,6 +22,15 @@ const MainNavigation = () => {
 
   console.log(cartData)
  console.log(userIsLoggedIn)
+
+const logout=useCallback(()=>{
+  dispatch(cartActions.replaceCart({
+    cartItems:[]
+  }))
+  localStorage.removeItem('cartItems')
+
+},[dispatch,cartData])
+
  const logoutHandler=()=>{
    
    dispatch(authActions.logoutHandler())
@@ -30,6 +40,7 @@ const MainNavigation = () => {
     email:''
   }))
    localStorage.removeItem('token')
+   logout()
   //  localStorage.removeItem('cartItems')
    // dispatch(authActions.userDataHandler({
      //   email:'',

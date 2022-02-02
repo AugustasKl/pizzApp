@@ -9,8 +9,9 @@ import classes from './StripeCheckoutButton.module.css'
 
 const StripeCheckoutButton=(props)=>{
     const toggleOrder= useSelector((state)=>state.order.orderIsShown)
-    console.log('order')
-    console.log(toggleOrder)
+    // console.log('order')
+    // console.log(toggleOrder)
+    
     const[showOrderData, setShowOrderData]=useState(false)
     const dispatch=useDispatch()
     const email=useSelector((state)=>state.auth.email)
@@ -18,7 +19,7 @@ const StripeCheckoutButton=(props)=>{
     const publishableKey='pk_test_51JmZ8vKe5XlafNv8aPjjC8bOMcd9jfVVN4iywNoPwCeVWTdSQYmNTQtTSsyjqM1XiEeaoMP3OPJ4LBKiMMpViFCR00lSQRWNDF'
     
     const onToken=(token)=>{
-        console.log(token)
+        // console.log(token)
         dispatch(orderActions.addressHandler({
             address:token.card.address_line1,
         }))

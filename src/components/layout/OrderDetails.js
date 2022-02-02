@@ -9,7 +9,7 @@ import { orderActions } from "../../redux/order-slice";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { cartActions } from "../../redux/cart-slice";
 import {motion} from "framer-motion"
-
+import { useCallback } from "react";
 
 const containerVariants={
   hidden:{
@@ -62,10 +62,18 @@ const OrderDetails = () => {
   const billingDetails = useSelector((state) => state.order);
   const orderDetails = useSelector((state) => state.cart);
 
+  const logout=useCallback(()=>{
+    dispatch(cartActions.replaceCart({
+      cartItems:[]
+    }))
+    localStorage.removeItem('cartItems')
+  
+  },[dispatch])
   const closeModalHandler=()=>{
     dispatch(orderActions.toggleOrderHandler({
       orderIsShown:false
     }))
+    logout()
     // dispatch(cartActions.toggleCart())
     history.push('/')
   }

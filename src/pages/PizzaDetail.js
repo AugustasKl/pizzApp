@@ -102,6 +102,7 @@ const PizzaDetail = () => {
         ingredients={pizzaDetailedData.ingredients}
         image={pizzaDetailedData.image}
         price={pizzaDetailedData.price}
+        hot={pizzaDetailedData.hot}
       />
     </React.Fragment>
   );

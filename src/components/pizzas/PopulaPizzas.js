@@ -65,6 +65,7 @@ const PopularPizzas = () => {
               ingredients={pizza.ingredients}
               image={pizza.image}
               price={pizza.price}
+              hot={pizza.hot}
               />
           );
         })}

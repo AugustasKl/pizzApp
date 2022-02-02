@@ -15,10 +15,10 @@ import { cartActions } from "./redux/cart-slice";
 function App() {
   const dispatch=useDispatch()
   const token = localStorage.getItem('token')
-  // const cartItems=JSON.parse(localStorage.getItem('cartItems'|| [] ))
+
 const status=useSelector((state)=>state.auth.token)
 const data=useSelector((state)=>state.auth.isLoggedIn)
-console.log(data)
+
 
 
     const kumpis =useCallback(()=>{
@@ -37,10 +37,12 @@ console.log(data)
     dispatch(authActions.loginHandler({
       token:token
     }))
+
     if(token){
       setTimeout(kumpis, 60000000)
   }
 },[dispatch, token, kumpis])
+
 
 // useEffect(()=>{
 //   if(token){

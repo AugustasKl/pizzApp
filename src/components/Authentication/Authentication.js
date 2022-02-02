@@ -11,10 +11,12 @@ import {signInWithPopup, GoogleAuthProvider} from 'firebase/auth'
 // let isInitial = true;
 import googleLogo from '../../assets/Google.svg'
 import { cartActions } from "../../redux/cart-slice";
+
+
 const Authentication = () => {
   const history = useHistory();
   const dispatch = useDispatch();
- const cartItems=useSelector((state)=>state.cart.cartItems)
+ const cartItems=useSelector((state)=>state.cart.cartItems[0])
   const token = useSelector((state) => state.auth);
 console.log(cartItems)
 
@@ -57,10 +59,11 @@ console.log(cartItems)
 
   dispatch(fetchAuthRequest(url, enteredEmail,enteredPassword));
   history.replace("/");
+  // localStorage.setItem('cartItems', JSON.stringify(cartItems))
   dispatch(authActions.emailHandler({
     email:enteredEmail
   }))
-  // localStorage.setItem('cartItems', JSON.stringify(cartItems))
+  localStorage.setItem('email', enteredEmail)
   };
   const signInWithGoogle=()=>{
     const provider=new GoogleAuthProvider()

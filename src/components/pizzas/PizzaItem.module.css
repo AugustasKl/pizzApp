@@ -12,8 +12,26 @@
   max-height: 60rem;
   width: 20%;
   border-bottom: 1px solid yellow;
+}
+.desc {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.number{
+  position: relative;
+  left: 17px;
+}
+.hot {
+  color: yellow;
+  display: flex;
+  text-decoration: none;
+  font-size: 1rem;
   
 }
+
+
 
 .item {
   display: flex;
@@ -24,7 +42,7 @@
   color: yellow;
   font-size: 1.7rem;
   padding: 3.5% 0;
- 
+  margin-left: 1rem;
 }
 
 .ingredients {

@@ -1,49 +1,72 @@
-.pizza{
-    margin: 7rem auto;
-    width: 100%;
-    max-width: 70rem;
-    border-radius: 6px;
-    background-color:#101426;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
-    padding: 3rem;
-    text-align: center;
-    color: yellow;
-    display: flex;
-    align-items: center; 
-    justify-content: space-around;
-    box-shadow: 0 1px 18px 10px rgba(0, 0, 0, 0.25);
-    height: 100%;
-    max-height: 70rem;
+.pizza {
+  margin: 7rem auto;
+  width: 100%;
+  max-width: 70rem;
+  border-radius: 6px;
+  background-color: #101426;
+  padding: 3rem;
+  text-align: center;
+  color: yellow;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  box-shadow: 0 1px 18px 10px rgba(0, 0, 0, 0.25);
+  height: 100%;
+  max-height: 70rem;
 }
 
 .specific {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    width: 30%;
-    margin: 3rem 0;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 30%;
+  margin: 3rem 0;
+  align-items: center;
 }
 
-.specific h1{
-    font-size: 3rem;
-    margin-top: -2rem;
+.specific h1 {
+  font-size: 3rem;
+  margin-top: -2rem;
+  margin-left: 2rem;
 }
 
-.price{
-    font-size: 1.5rem;
+.price {
+  font-size: 1.5rem;
 }
-.add{
-    margin-top: 1.5rem;
-    /* width: 50%; */
-    border: 1px solid yellow;
-    padding: 0.5rem 1.5rem;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    font-size: 1.1rem;
+.add {
+  margin-top: 1.5rem;
+  /* width: 50%; */
+  border: 1px solid yellow;
+  padding: 0.5rem 1.5rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-size: 1.1rem;
 }
 
-.image{
-    height: 20rem;
+.image {
+  height: 20rem;
+}
+.desc {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.number {
+  position: relative;
+  left: 15px;
+  bottom: 40px;
+}
+.hot {
+  color: yellow;
+  display: flex;
+  text-decoration: none;
+  font-size: 1.5rem;
+  margin-left: 1rem;
+}
+.hot img{
+    position: relative;
+    /* left: 5px; */
+    bottom: 30px;
 }

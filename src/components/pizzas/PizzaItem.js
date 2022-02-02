@@ -1,10 +1,11 @@
 import classes from './PizzaItem.module.css'
 import AddItemForm from '../layout/AddItemForm'
 import { Link } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { cartActions } from '../../redux/cart-slice'
 import {motion} from 'framer-motion'
-
+import pepperLogo from '../../assets/pepper.svg'
+import { useEffect } from 'react'
 
 const containerVariants={
     hover:{
@@ -18,8 +19,8 @@ const containerVariants={
 
 
 const PizzaItem=(props)=>{
-    const{title, price, ingredients, image, id}=props
-    
+    const data =useSelector((state)=>state.cart.cartItems)
+    const{title, price, ingredients, image, hot, id}=props
     const dispatch=useDispatch()
     const addToCartHandler=(quantity)=>{
         dispatch(cartActions.importItemToCart({
@@ -31,6 +32,8 @@ const PizzaItem=(props)=>{
         }))
     }
 
+
+   
     return(
         <motion.li className={classes.pizzas}
             variants={containerVariants}
@@ -39,8 +42,13 @@ const PizzaItem=(props)=>{
             <Link className={classes.specific} to={`/pizzas/${id}`}>
             <div className={classes.item}>
             <img className={classes.image} src={image} alt={title}/>
+            <div className={classes.desc}>
             <div className={classes.title}>
                 {title}
+            </div>
+            <div className={classes.hot}>
+             <span className={classes.number}> {hot>0 ? `${hot}x`: null}</span> <img src={hot ? pepperLogo : null}/>
+            </div>
             </div>
             <div className={classes.ingredients}>
                 {[...ingredients].join(', ')}

@@ -18,6 +18,9 @@ const DrinksItem = (props) => {
   const dispatch = useDispatch();
   const { id, image, title, price } = props;
   const addToCartHandler = (quantity) => {
+    const drinksObject={
+      
+    }
     dispatch(
       cartActions.importItemToCart({
         id,
