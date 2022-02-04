@@ -44,7 +44,7 @@ const buttonVariants = {
     scale: 1.1,
     boxShadow: "18px 2px 15px 5px #yellow",
     transition: {
-      duration: 1,
+      duration: 0.6,
       ease: "easeInOut",
       yoyo: Infinity,
     },
@@ -54,7 +54,7 @@ const buttonVariants = {
 const Cart = () => {
   const history = useHistory();
   const cartData = useSelector((state) => state.cart);
-
+  const token = useSelector((state)=>state.auth.token)
   console.log(cartData);
   console.log(cartData);
   const dispatch = useDispatch();
@@ -70,20 +70,8 @@ const Cart = () => {
   const reducedData=cartData.cartItems.reduce((tot,arr)=>{
     return tot +arr.total
 },0)
-
 const reducedDataFixed = Math.max(reducedData, 0).toFixed(2);
-  // const cartTotalAmounFixed = Math.max(cartData.totalAmount, 0).toFixed(2);
 
-  // const storageCartItems = JSON.parse(localStorage.getItem("cartItems"));
-  // console.log(storageCartItems);
-
-  // useEffect(() => {
-  //   dispatch(
-  //     cartActions.replaceCart({
-  //       cartItems: storageCartItems || [],
-  //     })
-  //   );
-  // }, [dispatch, storageCartItems]);
 
   return (
     <Modal>
@@ -123,14 +111,14 @@ const reducedDataFixed = Math.max(reducedData, 0).toFixed(2);
           <button className={classes.close} onClick={closeButtonHandler}>
             Close
           </button>
-          <StripeCheckoutButton total={reducedDataFixed} />
-          {!cartData.cartMessage && (
+           <StripeCheckoutButton total={reducedDataFixed} /> 
+          {!token && (
             <p className={classes.message}>
               We are sorry but You have to be logged in order to complete Your
               Purchase
             </p>
           )}
-          {!cartData.cartMessage && (
+          {!token&& (
             <motion.button
               onClick={openLoginHanhler}
               variants={buttonVariants}

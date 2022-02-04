@@ -8,13 +8,13 @@ import OrderDetails from '../layout/OrderDetails'
 import classes from './StripeCheckoutButton.module.css'
 
 const StripeCheckoutButton=(props)=>{
-    const toggleOrder= useSelector((state)=>state.order.orderIsShown)
-    // console.log('order')
-    // console.log(toggleOrder)
-    
-    const[showOrderData, setShowOrderData]=useState(false)
+
+    const token= useSelector((state)=>state.auth.token)
+
+
     const dispatch=useDispatch()
-    const email=useSelector((state)=>state.auth.email)
+    const emailFromMemory=localStorage.getItem('email')
+    console.log(emailFromMemory)
     const priceForStripe=props.total*100
     const publishableKey='pk_test_51JmZ8vKe5XlafNv8aPjjC8bOMcd9jfVVN4iywNoPwCeVWTdSQYmNTQtTSsyjqM1XiEeaoMP3OPJ4LBKiMMpViFCR00lSQRWNDF'
     
@@ -37,7 +37,7 @@ const StripeCheckoutButton=(props)=>{
     return(
         <React.Fragment>
         <StripeCheckout 
-        email={email}
+        email={emailFromMemory}
         name='Pizza App'
         postCode={false}
         billingAddress
@@ -48,9 +48,8 @@ const StripeCheckoutButton=(props)=>{
         token={onToken}
         stripeKey={publishableKey}
         currency='EUR'
-       
         >
-            <button className={classes.button}>Purchase</button>
+      <button className={classes.button} disabled={!token}>Purchase</button>
             </StripeCheckout>
         {/* {toggleOrder && <OrderDetails/>} */}
     </React.Fragment>

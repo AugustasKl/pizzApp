@@ -41,8 +41,7 @@ font-size: 1.25rem;
     overflow: hidden;
     
 }
-.main-image img {
-   
+.main-image img { 
     width: 100vw;
     height: 80vh;
     object-fit: cover;
@@ -56,4 +55,10 @@ font-size: 1.25rem;
 .view{
     text-decoration: none;
     color: yellow;
+}
+
+.view a,
+.view:hover {
+  color: red;
+  border-color: red;
 }

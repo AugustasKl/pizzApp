@@ -74,7 +74,6 @@ export const fetchAuthRequest = (url, emailInput, passwordInput) => {
      
         // localStorage.setItem('token', data.idToken)
         if (data.idToken) {
-          dispatch(authActions.userIsLoggedIn());
           dispatch(authActions.loginHandler({
             token:data.idToken
           }))

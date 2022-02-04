@@ -16,10 +16,11 @@ const cartSlice = createSlice({
           const existingCartItem=state.cartItems[existingCartItemIndex];
           let updatedItems
           if(existingCartItem){
-              const updatedItem= {
-                  ...existingCartItem,
-                  quantity:existingCartItem.quantity+newItem.quantity,
-              }
+            const updatedItem= {
+              ...existingCartItem,
+              quantity:existingCartItem.quantity+newItem.quantity,
+              total:existingCartItem.total +(newItem.quantity*newItem.price)
+            }
               updatedItems=[...state.cartItems]
               updatedItems[existingCartItemIndex]=updatedItem
           }else{
@@ -52,7 +53,7 @@ const cartSlice = createSlice({
      
       } else {
         existingItem.quantity--;
-        // existingItem.total = existingItem.total - existingItem.price;
+        existingItem.total = existingItem.total - existingItem.price;
         
       }
     },
@@ -65,10 +66,7 @@ const cartSlice = createSlice({
   replaceCart(state,action){
   state.cartItems=action.payload.cartItems
   },
-  // removeItemsFromCart(state,action){
-  //   state.cartItems=action
-  // }
- },
+ }
 });
 
 export const cartActions = cartSlice.actions;

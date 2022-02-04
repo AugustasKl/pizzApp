@@ -3,7 +3,7 @@ import background from "../../assets/homePagePizza.jpg";
 import PopularPizzas from "../pizzas/PopulaPizzas";
 import React from "react";
 import Footer from "../layout/Footer";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { motion } from "framer-motion";
 
@@ -30,10 +30,9 @@ const Home = () => {
           variants={buttonVariants}
           initial='hidden'
           animate='visible'>
-            <Link className={classes.view} to="pizzas">
-              {" "}
+            <NavLink className={classes.view} to="pizzas" activeClassName={classes.active}>
               View Pizzas
-            </Link>
+            </NavLink>
           </motion.button>
         </div>
         <div className={classes["main-image"]}>

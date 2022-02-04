@@ -26,7 +26,7 @@
   flex-direction: column;
   width: 50%;
   border-right: 1px solid yellow;
-  margin-right: -2rem;
+  margin-right: 2rem;
 }
 .order p,
 .billing p {
@@ -34,7 +34,7 @@
   font-size: 1.2rem;
 }
 .order ul {
-  margin-right: 2rem;
+  margin-right: 1rem;
   margin-top: -1rem;
 }
 

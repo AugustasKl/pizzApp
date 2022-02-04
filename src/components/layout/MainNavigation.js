@@ -17,8 +17,6 @@ const MainNavigation = () => {
   const cartData=useSelector((state)=>state.cart.cartItems)
   const userIsLoggedIn=useSelector((state)=>state.auth)
   const orderIsShown= useSelector((state)=>state.order.orderIsShown)
-  // const emptyArray= cartData.splice(0,cartData.length)
-  // console.log(emptyArray)
 
   console.log(cartData)
  console.log(userIsLoggedIn)
@@ -28,13 +26,12 @@ const logout=useCallback(()=>{
     cartItems:[]
   }))
   localStorage.removeItem('cartItems')
-
+  localStorage.removeItem('email')
 },[dispatch,cartData])
 
  const logoutHandler=()=>{
    
    dispatch(authActions.logoutHandler())
-   dispatch(authActions.userIsLoggedIn())
    dispatch(cartActions.cartMessage())
    dispatch(authActions.emailHandler({
     email:''
@@ -76,7 +73,7 @@ const logout=useCallback(()=>{
           
           {!userIsLoggedIn.token && ( 
             <li>
-            <Link to="/auth">Login</Link>
+            <NavLink to="/auth" activeClassName={classes.active}>Login</NavLink>
           </li>
           )}  
              {userIsLoggedIn.token  && (

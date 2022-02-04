@@ -67,7 +67,6 @@ const OrderDetails = () => {
       cartItems:[]
     }))
     localStorage.removeItem('cartItems')
-  
   },[dispatch])
   const closeModalHandler=()=>{
     dispatch(orderActions.toggleOrderHandler({

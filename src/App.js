@@ -5,6 +5,7 @@ import AllPizzas from "./pages/AllPizzas";
 import AllDrinks from "./pages/AllDrinks";
 import PizzaDetail from "./pages/PizzaDetail";
 import Auth from "./pages/Auth";
+import AboutUs from "./pages/AboutUs";
 import NoPizzaFound from "./components/pizzas/NoPizzaFound";
 import { useDispatch, useSelector} from "react-redux";
 import { fetchAllData } from "./lib/api";
@@ -21,14 +22,17 @@ const data=useSelector((state)=>state.auth.isLoggedIn)
 
 
 
-    const kumpis =useCallback(()=>{
+    const timedOutLogout =useCallback(()=>{
     dispatch(authActions.logoutHandler())
-    dispatch(authActions.userIsLoggedIn())
     dispatch(cartActions.cartMessage())
     localStorage.removeItem('token')
     localStorage.removeItem('cartItems')
+    localStorage.removeItem('email')
     dispatch(authActions.emailHandler({
       email:''
+    }))
+    dispatch(cartActions.replaceCart({
+      cartItems:[]
     }))
     console.log('labas')
   },[dispatch,status]) 
@@ -39,9 +43,9 @@ const data=useSelector((state)=>state.auth.isLoggedIn)
     }))
 
     if(token){
-      setTimeout(kumpis, 60000000)
+      setTimeout(timedOutLogout, 600000)
   }
-},[dispatch, token, kumpis])
+},[dispatch, token, timedOutLogout])
 
 
 // useEffect(()=>{
@@ -71,6 +75,9 @@ const data=useSelector((state)=>state.auth.isLoggedIn)
         </Route>
         <Route path="/auth">
           <Auth />
+        </Route>
+        <Route path="/about-us">
+          <AboutUs/>
         </Route>
         <Route path='*'>
           <NoPizzaFound/>
