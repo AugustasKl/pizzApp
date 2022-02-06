@@ -2,13 +2,13 @@ import CartItem from "./CartItem";
 import classes from "./Cart.module.css";
 import Modal from "../UI/Modal";
 import { useDispatch } from "react-redux";
-import { useEffect } from "react";
 import { cartActions } from "../../redux/cart-slice";
 import { useSelector } from "react-redux";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory } from "react-router-dom";
 import StripeCheckoutButton from "../stripe/StripeCheckoutButton";
 import { motion } from "framer-motion";
 
+//Framer Motion animations
 const containerVariants = {
   hidden: {
     opacity: 0,
@@ -52,22 +52,22 @@ const buttonVariants = {
 };
 
 const Cart = () => {
-  const history = useHistory();
-  const cartData = useSelector((state) => state.cart);
-  const token = useSelector((state)=>state.auth.token)
-  console.log(cartData);
-  console.log(cartData);
   const dispatch = useDispatch();
+  const history = useHistory();
+  const cartItems = useSelector((state) => state.cart.cartItems);
+  const token = useSelector((state)=>state.auth.token)
+
   const closeButtonHandler = () => {
     dispatch(cartActions.toggleCart());
   };
 
-  const openLoginHanhler = () => {
+  const openLoginHanhdler = () => {
     dispatch(cartActions.toggleCart());
     history.push("/auth");
   };
 
-  const reducedData=cartData.cartItems.reduce((tot,arr)=>{
+//total price of cartItems
+  const reducedData=cartItems.reduce((tot,arr)=>{
     return tot +arr.total
 },0)
 const reducedDataFixed = Math.max(reducedData, 0).toFixed(2);
@@ -84,7 +84,7 @@ const reducedDataFixed = Math.max(reducedData, 0).toFixed(2);
           Your Shopping Cart
         </motion.h2>
         <motion.ul variants={listVariants} initial="hidden" animate="visible">
-          {cartData.cartItems.map((item) => {
+          {cartItems.map((item) => {
             return (
               <CartItem
                 key={item.id}
@@ -118,9 +118,9 @@ const reducedDataFixed = Math.max(reducedData, 0).toFixed(2);
               Purchase
             </p>
           )}
-          {!token&& (
+          {!token && (
             <motion.button
-              onClick={openLoginHanhler}
+              onClick={openLoginHanhdler}
               variants={buttonVariants}
               whileHover="hover"
             >

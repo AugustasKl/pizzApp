@@ -8,7 +8,6 @@ import Auth from "./pages/Auth";
 import AboutUs from "./pages/AboutUs";
 import NoPizzaFound from "./components/pizzas/NoPizzaFound";
 import { useDispatch, useSelector} from "react-redux";
-import { fetchAllData } from "./lib/api";
 import { useCallback, useEffect } from "react";
 import { authActions } from "./redux/auth-slice";
 import { cartActions } from "./redux/cart-slice";
@@ -18,7 +17,7 @@ function App() {
   const token = localStorage.getItem('token')
 
 const status=useSelector((state)=>state.auth.token)
-const data=useSelector((state)=>state.auth.isLoggedIn)
+
 
 
 
@@ -46,16 +45,6 @@ const data=useSelector((state)=>state.auth.isLoggedIn)
       setTimeout(timedOutLogout, 600000)
   }
 },[dispatch, token, timedOutLogout])
-
-
-// useEffect(()=>{
-//   if(token){
-//       dispatch(cartActions.replaceCart({
-//   cartItems:cartItems
-// }))
-//   }
-// },[cartItems, dispatch,token])
-
 
 
   return (

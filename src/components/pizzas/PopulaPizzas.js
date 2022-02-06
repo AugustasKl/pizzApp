@@ -1,10 +1,12 @@
 import classes from "./PopularPizzas.module.css";
 import PizzaItem from "./PizzaItem";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { fetchAllData } from "../../lib/api";
 import LoadingSpinner from "../UI/LoadingSpinner";
 import {motion} from 'framer-motion'
+
+//framer motion animations
 const containerVariants={
   hidden:{
     opacity:0,
@@ -21,19 +23,17 @@ const containerVariants={
 }
 
 
-
-
-
-
 const PopularPizzas = () => {
   const dispatch = useDispatch();
   const pizzaData = useSelector((state) => state.api.items);
   const status=useSelector((state)=>state.ui.status)
 
+  //fetching pizzas from an API
   useEffect(() => {
     dispatch(fetchAllData("pizzas"));
   }, [dispatch]);
 
+  //Loading data spinner
   if(status==='pending'){
     return (
       <div className='centered'>
@@ -45,7 +45,7 @@ const PopularPizzas = () => {
   if(status === 'error'){
     return <p class='centered'style={{color:"yellow"}}>Unable to fetch data from server</p>
   }
-
+  //show random pizzas from received pizzas
   const shuffled = [...pizzaData].sort(() => 0.5 - Math.random());
   let selected = shuffled.slice(0, 4);
 
@@ -56,7 +56,7 @@ const PopularPizzas = () => {
          variants={containerVariants}
             initial="hidden"
             animate="visible">
-        {selected.map((pizza, i) => {
+        {selected.map((pizza) => {
           return (
               <PizzaItem
               id={pizza.id}
@@ -76,37 +76,3 @@ const PopularPizzas = () => {
 
 export default PopularPizzas;
 
-// const DUMMY_PIZZAS = [
-//   {
-//     id: "p1",
-//     title: "Margarita",
-//     image:"https://www.noriupicos.lt/wp-content/uploads/2021/10/09adca10-8ccc-4518-b490-f2cb84af72a1-1-700x465.png",
-//     price: 9.99,
-//     ingredients: ["Tomato sauce", "Olive oil", "Pesto", "Sliced ham"],
-//     spiceLevel:0
-//   },
-//   {
-//     id: "p2",
-//     title: "Peperoni",
-//     image:"https://www.noriupicos.lt/wp-content/uploads/2021/10/09adca10-8ccc-4518-b490-f2cb84af72a1-1-700x465.png",
-//     price: 8.99,
-//     ingredients: ["Tomato sauce", "Olive oil", "Pesto", "Sliced ham"],
-//     spiceLevel:1
-//   },
-//   {
-//     id: "p3",
-//     title: "Neapoli",
-//     image: "https://www.noriupicos.lt/wp-content/uploads/2021/10/09adca10-8ccc-4518-b490-f2cb84af72a1-1-700x465.png",
-//     price: 10.99,
-//     ingredients: ["Tomato sauce", "Olive oil", "Pesto", "Sliced ham"],
-//     spiceLevel:2
-//   },
-//   {
-//     id: "p4",
-//     title: "Mexican",
-//     image:"https://www.noriupicos.lt/wp-content/uploads/2021/10/09adca10-8ccc-4518-b490-f2cb84af72a1-1-700x465.png",
-//     price: 9.99,
-//     ingredients: ["Tomato sauce", "Olive oil", "Pesto", "Sliced ham", "Tomato sauce", "Tomato sauce","Tomato sauce"],
-//     spiceLevel:3
-//   },
-// ];

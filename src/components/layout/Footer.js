@@ -1,7 +1,6 @@
 import classes from './Footer.module.css'
 import logo from '../../assets/PizzaLogo.svg'
 import { Link } from 'react-router-dom'
-import Pizzas from '../../pages/AllPizzas'
 import facebookLogo from '../../assets/Facebook.svg'
 import instagramLogo from '../../assets/Instagram.svg'
 import visaLogo from '../../assets/Visa.svg'
@@ -27,8 +26,8 @@ const Footer=()=>{
                 <Link to='/pizzas'>
                     Pizzas
                 </Link>
-                <Link to='/'>
-                    Restaurants
+                <Link to='/drinks'>
+                    Drinks
                 </Link>
                 </div>
             </div>
@@ -70,7 +69,6 @@ const Footer=()=>{
                 </div>
             </div>
             </div>
-
         </footer>
 
     )

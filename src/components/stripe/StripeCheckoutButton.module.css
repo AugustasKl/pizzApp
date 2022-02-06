@@ -1,17 +1,16 @@
-
-.button{ 
-    font:inherit;
-    cursor: pointer;
-    background-color: transparent;
-    border: 1px solid yellow;
-    padding: 0.5rem 2rem;
-    margin-left: 1rem;
-    color: yellow;
-    text-decoration: none;
+.button {
+  font: inherit;
+  cursor: pointer;
+  background-color: transparent;
+  border: 1px solid yellow;
+  padding: 0.5rem 2rem;
+  margin-left: 1rem;
+  color: yellow;
+  text-decoration: none;
 }
 
-.button:hover{
-    background-color: yellow;
-    color:#101426;
-    border-color: yellow;
+.button:hover {
+  background-color: yellow;
+  color: #101426;
+  border-color: yellow;
 }

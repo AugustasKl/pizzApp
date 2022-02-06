@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { cartActions } from '../../redux/cart-slice'
 import {motion} from 'framer-motion'
 import pepperLogo from '../../assets/pepper.svg'
-import { useCallback, useEffect } from 'react'
 
+//framer motion animations
 const containerVariants={
     hover:{
         scale:1.05,
@@ -16,20 +16,11 @@ const containerVariants={
     }
   }
   
-
-
 const PizzaItem=(props)=>{
-
-    
-    const data =useSelector((state)=>state.cart.cartItems)
-    const reducedData=data.reduce((tot,arr)=>{
-        return tot +arr.total
-    },0)
-    const reducedDataFixed = Math.max(reducedData, 0).toFixed(2);
-    const{title, price, ingredients, image, hot, id}=props
     const dispatch=useDispatch()
-
+    const{title, price, ingredients, image, hot, id}=props
   
+    //adding selected pizza item to the cart
     const addToCartHandler=(quantity)=>{
         dispatch(cartActions.importItemToCart({
             title,
@@ -39,8 +30,6 @@ const PizzaItem=(props)=>{
             total:quantity*price
         }))
     }
-
-
    
     return(
         <motion.li className={classes.pizzas}

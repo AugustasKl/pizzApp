@@ -2,7 +2,12 @@ import React from "react";
 import classes from "./DrinksList.module.css";
 import DrinksItem from "./DrinksItem";
 import Footer from "../layout/Footer";
+
+
+
+
 const DrinksList = (props) => {
+  
   return (
     <React.Fragment>
       <div className={classes.drinks}>

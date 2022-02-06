@@ -3,6 +3,8 @@ import pizzaRestaurant from '../../assets/pizzaRestaurant.jpg'
 import React, {useEffect} from 'react'
 import {motion} from 'framer-motion'
 import Footer from '../layout/Footer'
+
+//Framer motion animations
 const containerVariants = {
     hidden: {
       opacity: 0,
@@ -36,9 +38,11 @@ const containerVariants = {
 
 
 const About =()=>{
+  //show top of the page when the page renders
     useEffect(() => {
         window.scrollTo(0, 0)
       }, [])
+      
     return(
         <React.Fragment>
        <motion.section className={classes.about} variants={containerVariants}

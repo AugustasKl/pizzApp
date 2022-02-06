@@ -3,16 +3,14 @@ import { useDispatch } from "react-redux";
 import AddItemForm from "../layout/AddItemForm";
 import Footer from "../layout/Footer";
 import classes from "./PizzaId.module.css";
-import PopularPizzas from "./PopulaPizzas";
 import { cartActions } from "../../redux/cart-slice";
 import pepperLogo from '../../assets/pepper.svg'
 
 const PizzaId = (props) => {
   const dispatch =useDispatch()
   const{title, image, price, hot, id}=props
-  // const ingredientsCopy=[ingredients].slice(0,-1)
-  // console.log(ingredientsCopy)
-  const data=[props.ingredients].reduce(function(a,b){
+
+  const ingredientsData=[props.ingredients].reduce(function(a,b){
     return a.concat(b).join(', ')
   },[]).slice(0,-1)
 
@@ -37,7 +35,7 @@ const PizzaId = (props) => {
             </div>
             </div>
           <div className={classes.ingredients}>
-                {data}
+                {ingredientsData}
             </div>
           <div className={classes.price}>
                     {price} €
@@ -48,7 +46,6 @@ const PizzaId = (props) => {
         </div>
         <img className={classes.image} src={image} alt={title}/>
       </div>
-      {/* <PopularPizzas/> */}
       <Footer/>
     </React.Fragment>
   );

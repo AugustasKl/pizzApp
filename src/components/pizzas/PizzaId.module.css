@@ -35,7 +35,6 @@
 }
 .add {
   margin-top: 1.5rem;
-  /* width: 50%; */
   border: 1px solid yellow;
   padding: 0.5rem 1.5rem;
   display: flex;
@@ -67,6 +66,5 @@
 }
 .hot img{
     position: relative;
-    /* left: 5px; */
     bottom: 30px;
 }

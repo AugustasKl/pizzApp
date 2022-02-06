@@ -1,6 +1,4 @@
 import { useRef } from "react";
-import { useDispatch } from "react-redux";
-import { cartActions } from "../../redux/cart-slice";
 import Input from "../UI/Input";
 import classes from "./AddItemForm.module.css";
 
@@ -10,7 +8,6 @@ const AddItemForm = (props) => {
   const submitHandler=(event)=>{
     event.preventDefault()
     const enteredAmount=amountInputRef.current.value;
-    // console.log(enteredAmount)
     const numberEnteredAmount= +enteredAmount
     props.onAddToCart(numberEnteredAmount)
   }

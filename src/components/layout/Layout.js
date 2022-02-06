@@ -3,7 +3,6 @@ import MainNavigation from "./MainNavigation"
 
 
 const Layout=(props)=>{
-
     return(
         <React.Fragment>
           <MainNavigation/>

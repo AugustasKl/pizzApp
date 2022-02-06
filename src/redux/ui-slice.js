@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const uiNotificationsState = {
-status:null,
+  status: null,
 };
 
 const uiSlice = createSlice({
@@ -20,5 +20,5 @@ const uiSlice = createSlice({
   },
 });
 
-export const uiActions= uiSlice.actions
-export default uiSlice
+export const uiActions = uiSlice.actions;
+export default uiSlice;

@@ -1,11 +1,8 @@
 .information {
   color: yellow;
-  /* max-height: 28rem; */
-  /* list-style: none; */
   margin: 0;
   padding: 0;
   overflow: auto;
-  /* width: 100%; */
   display: flex;
   flex-direction: column;
 }

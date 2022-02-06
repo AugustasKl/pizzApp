@@ -1,4 +1,3 @@
-import Pizzas from "../pages/AllPizzas";
 import { apiActions } from "../redux/api-slice";
 import { uiActions } from "../redux/ui-slice";
 
@@ -6,7 +5,7 @@ const FIREBASE_DOMAIN =
   "https://reactproject-e302f-default-rtdb.europe-west1.firebasedatabase.app";
 
 
-
+// fetch pizza with specific Id
 export const getDetailedPizza = (pizzaId) => {
   return async (dispatch) => {
     dispatch(
@@ -20,7 +19,6 @@ export const getDetailedPizza = (pizzaId) => {
         throw new Error("Could not fetch pizza");
       }
       const data = await response.json();
-      console.log(data);
       const laodedPizza = {
         id: pizzaId,
         ...data,
@@ -40,6 +38,7 @@ export const getDetailedPizza = (pizzaId) => {
         })
       );
     } catch (err) {
+        alert(err.message);
       dispatch(
         uiActions.errorNotification({
           status: "error",
@@ -49,6 +48,7 @@ export const getDetailedPizza = (pizzaId) => {
   };
 };
 
+// fetch data based on requestedData(pizzas or drinks)
 export const fetchAllData = (requestedData) => {
   return async (dispatch) => {
     dispatch(
@@ -62,7 +62,6 @@ export const fetchAllData = (requestedData) => {
         throw new Error("Could not fetch requested data");
       }
       const data = await response.json();
-      // console.log(data);
       const transformedData = [];
       for (const key in data) {
         const dataObj = {
@@ -71,12 +70,10 @@ export const fetchAllData = (requestedData) => {
         };
         transformedData.push(dataObj);
       }
-      // console.log(transformedData)
       return transformedData;
     };
     try {
       const loadedData = await fetchData();
-      // console.log(loadedData)
       if (requestedData === "pizzas") {
         dispatch(
           apiActions.loadItems({
@@ -96,7 +93,7 @@ export const fetchAllData = (requestedData) => {
         })
       );
     } catch (err) {
-      // alert(err.message);
+      alert(err.message);
       dispatch(
         uiActions.errorNotification({
           status: "error",
@@ -105,37 +102,3 @@ export const fetchAllData = (requestedData) => {
     }
   };
 };
-
-// export const fetchAllDrinks = () => {
-//   return async (dispatch) => {
-//     const fetchData = async () => {
-//       const response = await fetch(`${FIREBASE_DOMAIN}/drinks.json`);
-//       if (!response.ok) {
-//         throw new Error("Could not fetch requested data");
-//       }
-//       const data = await response.json();
-//       // console.log(data);
-//       const transformedData = [];
-//       for (const key in data) {
-//         const dataObj = {
-//           id: key,
-//           ...data[key],
-//         };
-//         transformedData.push(dataObj);
-//       }
-//       // console.log(transformedData)
-//       return transformedData;
-//     };
-//     try {
-//       const loadedData = await fetchData();
-//       // console.log(loadedData)
-//       dispatch(
-//         apiActions.loadDrinks({
-//           drinks: loadedData,
-//         })
-//       );
-//     } catch (err) {
-//       alert(err.message);
-//     }
-//   };
-// };

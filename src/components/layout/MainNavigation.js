@@ -7,52 +7,43 @@ import CartButton from "../cart/CartButton";
 import { authActions } from "../../redux/auth-slice";
 import { cartActions } from "../../redux/cart-slice";
 import OrderDetails from "./OrderDetails";
-import {motion} from 'framer-motion'
+import { motion } from "framer-motion";
 import { useCallback } from "react";
 
 const MainNavigation = () => {
-  const dispatch=useDispatch()
-  const sendRequest=useSelector((state)=>state.auth.sendRequest)
+  const dispatch = useDispatch();
   const toggleCart = useSelector((state) => state.cart.cartIsShown);
-  const cartData=useSelector((state)=>state.cart.cartItems)
-  const userIsLoggedIn=useSelector((state)=>state.auth)
-  const orderIsShown= useSelector((state)=>state.order.orderIsShown)
+  const cartData = useSelector((state) => state.cart.cartItems);
+  const token = useSelector((state) => state.auth.token);
+  const orderIsShown = useSelector((state) => state.order.orderIsShown);
 
-  console.log(cartData)
- console.log(userIsLoggedIn)
+  const logoutCallBack = useCallback(() => {
+    dispatch(
+      cartActions.replaceCart({
+        cartItems: [],
+      })
+    );
+    dispatch(
+      authActions.emailHandler({
+        email: "",
+      })
+    );
+    dispatch(authActions.logoutHandler());
+    localStorage.removeItem("cartItems");
+    localStorage.removeItem("email");
+    localStorage.removeItem("token");
+  }, [dispatch, cartData]);
 
-const logout=useCallback(()=>{
-  dispatch(cartActions.replaceCart({
-    cartItems:[]
-  }))
-  localStorage.removeItem('cartItems')
-  localStorage.removeItem('email')
-},[dispatch,cartData])
+  const logoutHandler = () => {
+    logoutCallBack();
+  };
 
- const logoutHandler=()=>{
-   
-   dispatch(authActions.logoutHandler())
-   dispatch(cartActions.cartMessage())
-   dispatch(authActions.emailHandler({
-    email:''
-  }))
-   localStorage.removeItem('token')
-   logout()
-  //  localStorage.removeItem('cartItems')
-   // dispatch(authActions.userDataHandler({
-     //   email:'',
-     //   password:''
-     // }))
-     // dispatch(authActions.sendRequest())
-      }
-      // setTimeout(logoutHandler, 3000)
   return (
     <motion.header
-     className={classes.header}
-     initial={{y:'100vw'}}
-     animate={{y:0}}
-    //  transition={{stiffness:10}}
-     >
+      className={classes.header}
+      initial={{ y: "100vw" }}
+      animate={{ y: 0 }}
+    >
       <nav className={classes.nav}>
         <ul>
           <li>
@@ -70,21 +61,24 @@ const logout=useCallback(()=>{
               <img src={logo} alt="Pizza Logo" />
             </Link>
           </li>
-          
-          {!userIsLoggedIn.token && ( 
+          {!token && (
             <li>
-            <NavLink to="/auth" activeClassName={classes.active}>Login</NavLink>
-          </li>
-          )}  
-             {userIsLoggedIn.token  && (
-          <li>
-            <button className={classes.logout} onClick={logoutHandler}>Logout</button>
-          </li>
-            )}
+              <NavLink to="/auth" activeClassName={classes.active}>
+                Login
+              </NavLink>
+            </li>
+          )}
+          {token && (
+            <li>
+              <button className={classes.logout} onClick={logoutHandler}>
+                Logout
+              </button>
+            </li>
+          )}
           <li>
             <CartButton />
-            {toggleCart && <Cart /> }
-           {orderIsShown && <OrderDetails/>} 
+            {toggleCart && <Cart />}
+            {orderIsShown && <OrderDetails />}
           </li>
         </ul>
       </nav>

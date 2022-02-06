@@ -4,7 +4,7 @@ import PizzaItem from "./PizzaItem";
 import Footer from "../layout/Footer";
 import { useHistory, useLocation } from "react-router-dom/cjs/react-router-dom.min";
 
-
+//ascending/descending functionality based on the item's price 
 const sortPizzas = (pizzas, ascending) => {
   return pizzas.sort((pizzaA, pizzaB) => {
     if (ascending) {
@@ -16,10 +16,12 @@ const sortPizzas = (pizzas, ascending) => {
 };
 
 const PizzaList = (props) => {
-  const pizzasData=[...props.pizzas]
-  console.log(props.pizzas)
   const history=useHistory()
   const location=useLocation()
+
+  
+  //asdengind/descending functionality
+  const pizzasData=[...props.pizzas]
   const queryParams= new URLSearchParams(location.search);
   const isSortingAscending=queryParams.get('sort')==='asc'
   const sortedPizzas=sortPizzas(pizzasData, isSortingAscending)

@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { cartActions } from "../../redux/cart-slice";
 import {motion} from 'framer-motion'
 
+//Framer motion animations
 const containerVariants={
   hover:{
       scale:1.05,
@@ -13,14 +14,12 @@ const containerVariants={
   }
 }
 
-
 const DrinksItem = (props) => {
   const dispatch = useDispatch();
   const { id, image, title, price } = props;
+
+  //add drinksItem to the cart
   const addToCartHandler = (quantity) => {
-    const drinksObject={
-      
-    }
     dispatch(
       cartActions.importItemToCart({
         id,

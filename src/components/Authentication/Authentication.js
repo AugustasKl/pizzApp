@@ -40,7 +40,7 @@ const Authentication = () => {
       url =
         "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDDjTL1GI_FBga1VjFhS20d5eiyvYiD_HU";
     }
-    // 2) depending on state request is being sent to authFunc.js to thunk fetchAuthRequest funciont
+    // 2) depending on state  request is being sent to authFunc.js to thunk fetchAuthRequest function
     dispatch(fetchAuthRequest(url, enteredEmail, enteredPassword));
     history.replace("/");
 
@@ -64,12 +64,14 @@ const Authentication = () => {
               token: res._tokenResponse.idToken,
             })
           );
+          //setting "token" to local storage
           localStorage.setItem("token", res._tokenResponse.idToken);
           dispatch(
             authActions.emailHandler({
               email: res._tokenResponse.email,
             })
           );
+          //setting email to local storage
           localStorage.setItem("email", res._tokenResponse.email);
           history.replace("/");
         }

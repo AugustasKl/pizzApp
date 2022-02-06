@@ -1,20 +1,18 @@
 import { useDispatch } from "react-redux";
 import { cartActions } from "../../redux/cart-slice";
-import classes from "./CartItem.module.css";
-import { useState } from "react";
+import classes from "./CartItem.module.css";;
 
 const CartItem = (props) => {
-  // const [cartMessage, setCartMessage]=useState(true)
+  const dispatch=useDispatch()
   const{title, id, price, quantity}=props.item
   const totalprice=`${price.toFixed(2)}`
-  const dispatch=useDispatch()
 
   const incrementhandler=()=>{
     dispatch(cartActions.incrementItem({
-      title:title,
-      id:id,
-      price:price,
-      quantity:quantity,
+      title,
+      id,
+      price,
+      quantity,
     }))
   }
   const decrementHandler=()=>{
