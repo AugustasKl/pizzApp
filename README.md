@@ -8,4 +8,4 @@ Pizza App is a multi-page demo app created with React + Redux that lets you choo
 3. Start app by writing a command 'npm start'
 
 ## Info
-Created by AugustasKl
+Created by @AugustasKl
