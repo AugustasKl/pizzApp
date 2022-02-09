@@ -57,3 +57,60 @@
 .specific {
   text-decoration: none;
 }
+
+@media (max-width: 1024px) {
+  .image {
+    height: 15rem;
+    width: 15rem;
+  }
+  .pizzas {
+    max-height: 40rem;
+    width: 25%;
+    /* margin-top: -2.3rem; */
+  }
+  .title {
+    font-size: 1.3rem;
+  }
+  .ingredients {
+    font-size: 0.9rem;
+    width: 15rem;
+  }
+}
+@media (max-width: 425px) {
+  .pizzas {
+    width: 90%;
+    
+  }
+   .specific {
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+    width: 100%;
+    align-items: center;
+  }
+  .image {
+    height: 6.75rem;
+    width: 6.75rem;
+    position: absolute;
+    left: 0;
+    margin-left: -1.85rem;
+    margin-top: 2.5rem;
+  }
+  .title{
+    font-size: 1.5rem;
+  }
+  .desc{
+    margin-left: 4rem;
+    margin-top: 0.5rem;
+  }
+  .ingredients{
+    width: 14.5rem;
+    height: 1.5rem;
+    margin-left: 6rem;
+    margin-bottom: 1rem;
+  }
+  .price{
+    margin-left: 5rem;
+  }
+
+}

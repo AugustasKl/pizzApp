@@ -50,9 +50,9 @@ const PopularPizzas = () => {
   let selected = shuffled.slice(0, 4);
 
   return (
-    <section className={classes.pizza}>
+   <section className={classes.pizza}>
       <h1 className={classes.text}>Our Recommendations to You</h1>
-      <motion.ul className={classes.list}
+      <motion.ul 
          variants={containerVariants}
             initial="hidden"
             animate="visible">
@@ -71,7 +71,10 @@ const PopularPizzas = () => {
         })}
       </motion.ul>
     </section>
-  );
+   
+  )
+    
+  
 };
 
 export default PopularPizzas;

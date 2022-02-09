@@ -26,7 +26,7 @@ const Drinks = () => {
   }
   //error handler
   if(notifications === 'error'){
-    return <p class='centered'style={{color:"yellow"}}>Unable to fetch data from server</p>
+    return <p className='centered'style={{color:"yellow"}}>Unable to fetch data from server</p>
   }
 
   if(notifications==='success' && (!drinksData || drinksData.length===0)){

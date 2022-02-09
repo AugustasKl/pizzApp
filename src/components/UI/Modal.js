@@ -25,7 +25,7 @@ const Backdrop = () => {
         orderIsShown: false,
       })
     );
-  }, [dispatch]);
+  }, [dispatch, orderShown]);
 
   const backdropHandler = () => {
     backdropCallback();

@@ -42,7 +42,7 @@ const PizzaList = (props) => {
           <h4>We guarantee you will be impressed</h4>
           <button className={classes.order} onClick={changeSortingHandler}>Sort by Price In {isSortingAscending ? 'Descending' : 'Ascending'} Order</button>
         </div>
-        <ul className={classes.list}>
+        <ul>
           {sortedPizzas.map((pizza)=>{
            return <PizzaItem
             id={pizza.id}

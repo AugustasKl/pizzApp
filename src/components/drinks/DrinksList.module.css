@@ -31,3 +31,14 @@
 .message{
   color: yellow;
 }
+@media (max-width: 1024px) {
+  .pizzas ul{
+    padding: 1rem;
+  }
+  .intro{
+    font-size: 1.3rem
+  }
+  .intro h4 {
+   font-size: 1rem;
+  }
+}

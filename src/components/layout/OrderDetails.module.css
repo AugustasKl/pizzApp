@@ -100,3 +100,24 @@
     color: #101426;
     background-color: yellow;
 }
+@media (max-width: 1024px) {
+.order ul{
+ margin-left: -1.75rem;
+}
+
+}
+
+@media (max-width: 425px) {
+  /* .information{
+    height: 55rem;
+  } */
+  .order{
+    width: 100%;
+  }
+  .order ul{
+    margin-left: -2.5rem;
+   }
+   .data{
+     font-size: 1.1rem;
+   }
+}

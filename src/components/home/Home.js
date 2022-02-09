@@ -35,7 +35,7 @@ const Home = () => {
           </motion.button>
         </div>
         <div className={classes["main-image"]}>
-          <img src={background} alt="Home page pizza picture" />
+          <img src={background} alt="Home page pizza" />
         </div>
       </section>
       <PopularPizzas />

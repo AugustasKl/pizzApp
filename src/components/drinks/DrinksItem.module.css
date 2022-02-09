@@ -39,3 +39,27 @@
 .add{
     margin-right: 1rem;
 }
+
+@media (max-width: 1024px) {
+    .image{
+        width: 3.5rem;
+        height: 13rem;
+    }
+    .drinks{
+        max-height: 40rem;
+        width: 30%;
+    }
+    .title{
+        margin-top: 0.3rem;
+    }
+}
+
+@media (max-width: 425px) {
+    .drinks{
+        width: 90%;
+    }
+    .add{
+        width: 17.5rem;
+        margin-left: -2rem;
+    }
+}

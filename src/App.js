@@ -18,12 +18,9 @@ function App() {
 
 const status=useSelector((state)=>state.auth.token)
 
-
-
-
+    //creating timedOut logout with callback function
     const timedOutLogout =useCallback(()=>{
     dispatch(authActions.logoutHandler())
-    dispatch(cartActions.cartMessage())
     localStorage.removeItem('token')
     localStorage.removeItem('cartItems')
     localStorage.removeItem('email')
@@ -33,14 +30,15 @@ const status=useSelector((state)=>state.auth.token)
     dispatch(cartActions.replaceCart({
       cartItems:[]
     }))
-    console.log('labas')
   },[dispatch,status]) 
   
+
+  //Getting token from local storage and dispatching to state
   useEffect(()=>{
     dispatch(authActions.loginHandler({
       token:token
     }))
-
+    // if token is received logout after certain time
     if(token){
       setTimeout(timedOutLogout, 600000)
   }

@@ -10,6 +10,7 @@ import OrderDetails from "./OrderDetails";
 import { motion } from "framer-motion";
 import { useCallback } from "react";
 
+
 const MainNavigation = () => {
   const dispatch = useDispatch();
   const toggleCart = useSelector((state) => state.cart.cartIsShown);
@@ -40,47 +41,47 @@ const MainNavigation = () => {
 
   return (
     <motion.header
-      className={classes.header}
-      initial={{ y: "100vw" }}
-      animate={{ y: 0 }}
+    className={classes.header}
+    initial={{ y: "100vw" }}
+    animate={{ y: 0 }}
     >
       <nav className={classes.nav}>
-        <ul>
-          <li>
-            <NavLink to="/pizzas" activeClassName={classes.active}>
-              Pizzas
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/drinks" activeClassName={classes.active}>
-              Drinks
-            </NavLink>
-          </li>
-          <li>
-            <Link to="/">
-              <img src={logo} alt="Pizza Logo" />
-            </Link>
-          </li>
-          {!token && (
-            <li>
-              <NavLink to="/auth" activeClassName={classes.active}>
-                Login
-              </NavLink>
-            </li>
-          )}
-          {token && (
-            <li>
-              <button className={classes.logout} onClick={logoutHandler}>
-                Logout
-              </button>
-            </li>
-          )}
-          <li>
-            <CartButton />
-            {toggleCart && <Cart />}
-            {orderIsShown && <OrderDetails />}
-          </li>
-        </ul>
+           <ul>
+           <li>
+             <NavLink to="/pizzas" activeClassName={classes.active}>
+               Pizzas
+             </NavLink>
+           </li>
+           <li>
+             <NavLink to="/drinks" activeClassName={classes.active}>
+               Drinks
+             </NavLink>
+           </li>
+           <li>
+             <Link to="/">
+               <img src={logo} alt="Pizza Logo" />
+             </Link>
+           </li>
+           {!token && (
+             <li>
+               <NavLink to="/auth" activeClassName={classes.active}>
+                 Login
+               </NavLink>
+             </li>
+           )}
+           {token && (
+             <li>
+               <button className={classes.logout} onClick={logoutHandler}>
+                 Logout
+               </button>
+             </li>
+           )}
+           <li className={classes.button}>
+             <CartButton />
+             {toggleCart && <Cart />}
+             {orderIsShown && <OrderDetails />}
+           </li>
+         </ul>
       </nav>
     </motion.header>
   );

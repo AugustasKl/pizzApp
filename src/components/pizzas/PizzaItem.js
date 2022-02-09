@@ -1,7 +1,7 @@
 import classes from './PizzaItem.module.css'
 import AddItemForm from '../layout/AddItemForm'
 import { Link } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { cartActions } from '../../redux/cart-slice'
 import {motion} from 'framer-motion'
 import pepperLogo from '../../assets/pepper.svg'
@@ -44,7 +44,7 @@ const PizzaItem=(props)=>{
                 {title}
             </div>
             <div className={classes.hot}>
-             <span className={classes.number}> {hot>0 ? `${hot}x`: null}</span> <img src={hot ? pepperLogo : null}/>
+             <span className={classes.number}> {hot>0 ? `${hot}x`: null}</span> <img src={hot ? pepperLogo : null} />
             </div>
             </div>
             <div className={classes.ingredients}>

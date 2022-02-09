@@ -39,7 +39,7 @@ const Footer=()=>{
                 </div>
             </div>
             <div>
-                <h4>FOLLOW</h4>
+                <h4 className={classes.follow}>FOLLOW</h4>
                 <div className={classes.social}>
                     <div className={classes.facebook}>
                     <a href="https://www.facebook.com/" target="_blank" rel="nofollow noreferrer">

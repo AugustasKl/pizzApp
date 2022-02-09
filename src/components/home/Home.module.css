@@ -42,11 +42,6 @@
   object-fit: cover;
 }
 
-.text button:hover,
-.text button:active {
-  color: red;
-}
-
 .view {
   text-decoration: none;
   color: yellow;
@@ -55,4 +50,21 @@
 .view a,
 .view:hover {
   color: red;
+}
+
+@media (max-width: 1024px) {
+  .text button{
+    margin-right: 4rem;
+  }
+}
+
+@media (max-width: 425px) {
+  .text {
+    font-size: 1.5rem;
+    margin-top: -3rem;
+  }
+  .text button{
+    width: 14rem;
+  }
+
 }

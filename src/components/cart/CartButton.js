@@ -41,7 +41,7 @@ const CartButton = () => {
 
   return (
     <button className={classes.button} onClick={cartButtonHandler}>
-      <span> Order</span>
+      <span className={classes.order}> Order</span>
       <span className={classes.badge}>{numberOfCartItems}</span>
       <div className={classes.total}>{reducedDataFixed} €</div>
     </button>

@@ -14,11 +14,14 @@
   color: red;
   margin: 0 1rem 0 1rem;
 }
-.total{
-    display: flex;
-    width: 4.2rem;
-    justify-content: center;
+.total {
+  display: flex;
+  width: 4.2rem;
+  justify-content: center;
 }
 .button:hover {
   color: red;
+}
+@media (max-width: 425px) {
+
 }

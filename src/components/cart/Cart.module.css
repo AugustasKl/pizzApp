@@ -1,64 +1,89 @@
-.cart{
-    background-color: #101426;
-    color: yellow;
+.cart {
+  background-color: #101426;
+  color: yellow;
 }
 
-.cart ul{
-    max-height: 28rem;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    overflow: auto;
+.cart ul {
+  max-height: 28rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+}
+.cart h2 {
+  font-size: 1.7rem;
+  margin-left: 1rem;
+  margin: 1rem 0;
+  border-bottom: 1px solid yellow;
+  padding: 1rem;
+}
 
+.total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin: 1rem 0;
+  border-top: 1px solid yellow;
+  padding: 1rem;
 }
-.cart h2{
-    font-size: 1.7rem;
-    margin-left: 1rem;
-    margin: 1rem 0;
-    border-bottom: 1px solid yellow;
-    padding: 1rem;
+.amount {
+  margin-left: 1rem;
 }
-
-.total{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-weight: bold;
-    font-size: 1.5rem;
-    margin: 1rem 0;
-    border-top: 1px solid yellow;
-    padding: 1rem;
+.actions {
+  text-align: right;
 }
-.amount{
-    margin-left: 1rem;
-}
-.actions{
-    text-align: right;
-}
-.message{
-    margin: 2rem auto;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.message {
+  margin: 2rem auto;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .actions button,
-.actions a{ 
-    font:inherit;
-    cursor: pointer;
-    background-color: transparent;
-    border: 1px solid yellow;
-    padding: 0.5rem 2rem;
-    margin-left: 1rem;
-    color: yellow;
-    text-decoration: none;
+.actions a {
+  font: inherit;
+  cursor: pointer;
+  background-color: transparent;
+  border: 1px solid yellow;
+  padding: 0.5rem 2rem;
+  margin-left: 1rem;
+  color: yellow;
+  text-decoration: none;
 }
 
 .actions button:hover,
-.actions a:hover{
-    background-color: yellow;
-    color:#101426;
-    border-color: yellow;
+.actions a:hover {
+  background-color: yellow;
+  color: #101426;
+  border-color: yellow;
 }
 
+@media (max-width: 1024px) {
+  .total {
+    font-size: 1.4rem;
+  }
+  .actions button,
+  .actions a {
+    padding: 0.3rem 1.4rem;
+}
+.message{
+    font-size: 1rem;
+}
+}
+
+
+@media (max-width: 425px) {
+  h2{
+    text-align: center;
+  }
+  .actions{
+    text-align: center;
+  }
+  .actions button,
+  .actions a {
+    padding: 0.15rem 1rem;
+}
+}

@@ -30,7 +30,7 @@ const PizzaDetail = () => {
   }
   if (!pizzaDetailedData.title) {
     return (
-      <p class="centered" style={{ color: "yellow" }}>
+      <p className="centered" style={{ color: "yellow" }}>
         No such pizza was found
       </p>
     );

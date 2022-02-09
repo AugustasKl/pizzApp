@@ -37,3 +37,50 @@
     color:#101426;
     border-color: yellow;
 }
+
+@media (max-width: 1024px) {
+ .item{
+     padding: 0.5rem 0;
+ }   
+ .info h3{
+    font-size: 1.6rem;
+    
+}
+.price{
+    font-size: 1.3rem;
+}
+.quantity{
+    padding: 0.15rem 0.3rem;
+}
+.actions button{
+    padding: 0.2rem 1.2rem;
+}
+}
+
+@media (max-width: 425px) {
+    .item{
+        padding: 0.15rem 0;
+
+    } 
+    .info h3{
+        font-size: 1.4rem;
+        
+    }
+
+    .actions{
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+    }
+    .actions button{
+        padding: 0.1rem 1rem;
+    }
+    .quantity{
+        padding: 0.1rem 0.2rem;
+        width: 2rem;
+    }
+    .price{
+        margin-right: -2rem;
+        width: 3.5rem;
+    }
+}

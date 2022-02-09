@@ -46,7 +46,8 @@ const buttonVariants = {
     transition: {
       duration: 0.6,
       ease: "easeInOut",
-      yoyo: Infinity,
+      repeat: Infinity,
+      repeatType:'reverse',
     },
   },
 };
