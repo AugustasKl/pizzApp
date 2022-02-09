@@ -30,3 +30,25 @@
   width: 100%;
   position: relative;
 }
+
+
+@media (max-width: 1024px) {
+.text{
+  margin: 3rem auto;
+  max-width: 40rem;
+  width: 90%;
+  margin-left: -9rem;
+}
+}
+@media (max-width: 768px) {
+  .text{
+    margin-left: -10rem;
+  }
+}
+@media (max-width: 425px) {
+.text{
+  font-size: 0.6rem;
+  margin: 1rem auto;
+  margin-left: -7rem;
+}
+}

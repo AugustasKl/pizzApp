@@ -41,6 +41,12 @@
   justify-content: center;
   align-items: center;
 }
+.credit{
+  font-size: 0.7rem;
+ display: flex;
+ width: 50%;
+ justify-content: space-around;
+}
 
 .actions button,
 .actions a {

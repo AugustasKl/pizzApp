@@ -76,6 +76,29 @@
     width: 15rem;
   }
 }
+
+@media (max-width: 768px) {
+
+.image{
+  height: 10rem;
+  width: 10rem;
+}
+.title{
+  font-size: 1.3rem;
+  
+}
+
+.ingredients{
+  width: 11.5rem;
+ 
+}
+.price{
+  font-size: 1.4rem; 
+  margin-top: 0.7rem;
+}
+
+}
+
 @media (max-width: 425px) {
   .pizzas {
     width: 90%;

@@ -96,6 +96,17 @@
     height: 3rem;
   }
 }
+@media (max-width: 768px){
+  .up {
+    width: 100%;
+    margin-left: -5rem;
+  }
+  .logo {
+    
+    margin-right: 16rem;
+  }
+}
+
 @media (max-width: 425px){
 .up{
   width: 100%;

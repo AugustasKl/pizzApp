@@ -55,7 +55,7 @@ const PizzaItem=(props)=>{
                 </div>
             </div>
             </Link>
-            <div>
+            <div className={classes.btn}>
                 <AddItemForm onAddToCart={addToCartHandler}/>
             </div>
         </motion.li>

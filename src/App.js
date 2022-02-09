@@ -38,9 +38,9 @@ const status=useSelector((state)=>state.auth.token)
     dispatch(authActions.loginHandler({
       token:token
     }))
-    // if token is received logout after certain time
+    // if token is received logout after certain time(example: 3mins)
     if(token){
-      setTimeout(timedOutLogout, 600000)
+      setTimeout(timedOutLogout, 180000)
   }
 },[dispatch, token, timedOutLogout])
 

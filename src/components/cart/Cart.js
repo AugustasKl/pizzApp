@@ -108,6 +108,11 @@ const reducedDataFixed = Math.max(reducedData, 0).toFixed(2);
           <span className={classes.amount}>Total Amount </span>
           <span>{reducedDataFixed} €</span>
         </motion.div>
+          <div className={classes.credit}>
+          <p>Credit cart details: card number: 4242 4242 4242 4242 </p>
+          <p>year:12/44</p>
+          <p>cvc:444</p>
+          </div>
         <div className={classes.actions}>
           <button className={classes.close} onClick={closeButtonHandler}>
             Close

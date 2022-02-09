@@ -68,3 +68,21 @@
     position: relative;
     bottom: 30px;
 }
+@media (max-width: 425px) {
+.pizza{
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  margin: 1rem auto;
+}
+.ingredients{
+  width: 12rem;
+  margin-top: -1.5rem;
+  text-align: center;
+}
+.add{
+  width: 16rem;
+  display: flex;
+  justify-content: space-around;
+}
+}

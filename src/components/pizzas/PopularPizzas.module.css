@@ -36,6 +36,18 @@
   }
 }
 
+@media (max-width: 768px) {
+  .text{
+    margin-bottom: -0.1rem;
+  }
+  .pizza{
+   height: 30rem;
+  }
+  .pizza ul{
+    margin-top: -1.5rem;
+  }
+
+}
 @media (max-width: 425px) {
   .pizza{
 display: none;
