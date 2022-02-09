@@ -15,6 +15,7 @@ const CartItem = (props) => {
       quantity,
     }))
   }
+  
   const decrementHandler=()=>{
     dispatch(cartActions.decrementItem(id))
   }
