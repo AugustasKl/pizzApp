@@ -27,7 +27,17 @@
   border-color: yellow;
   color: #252424;
 }
-
+@media (max-width: 1500px) {
+.form{ 
+  width:18rem;
+  margin-left: -2rem;
+}
+.form button{
+  padding: 0.1rem 1rem;
+  width: 5rem;
+  margin-left: -1.8rem;
+}
+}
 @media (max-width: 1024px) {
 .form{
   padding: 0.4rem 0;

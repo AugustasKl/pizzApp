@@ -38,8 +38,8 @@
 .title {
   color: yellow;
   font-size: 1.7rem;
-  padding: 3.5% 0;
-  margin-left: 1rem;
+  padding: 1rem 0;
+  /* margin-left: 0.6rem; */
 }
 
 .ingredients {
@@ -58,6 +58,21 @@
   text-decoration: none;
 }
 
+@media (max-width: 1500px) {
+  .image {
+    height: 14rem;
+    width: 14rem;
+  }
+  .ingredients {
+    width: 14rem;
+    margin-bottom: 0.7rem;
+  }
+  .title{
+    /* padding: 0.8rem 0; */
+   font-size: 1.34rem;
+  }
+
+}
 @media (max-width: 1024px) {
   .image {
     height: 15rem;
@@ -84,8 +99,8 @@
   width: 10rem;
 }
 .title{
-  font-size: 1.3rem;
-  
+  font-size: 1rem;
+
 }
 
 .ingredients{
@@ -108,8 +123,6 @@
     display: flex;
     justify-content: space-around;
     position: relative;
-    width: 100%;
-    align-items: center;
   }
   .image {
     height: 6.75rem;
@@ -120,7 +133,9 @@
     margin-top: 2.5rem;
   }
   .title{
-    font-size: 1.5rem;
+    font-size: 1.4rem;
+    width:8rem;
+    margin-right: -2.5rem;
   }
   .desc{
     margin-left: 4rem;
