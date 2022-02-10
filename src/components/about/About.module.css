@@ -30,7 +30,12 @@
   width: 100%;
   position: relative;
 }
-
+@media (max-width: 1500px) {
+  .text{
+    margin: 3rem auto;
+    margin-left: -7rem;
+  }
+}
 
 @media (max-width: 1024px) {
 .text{
